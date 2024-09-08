@@ -37,27 +37,31 @@ App.js:
 A estrutura do arquivo está correta, com as importações adequadas de telas e a configuração de navegação com createStackNavigator.
 Seria interessante adicionar tratamento de erros em casos de falha de navegação ou login.
 A utilização de Tailwind CSS pode ser integrada para estilizar os componentes de maneira mais eficiente e manter um design consistente.
+
 2. Backend (Node.js e MySQL):
 server.js:
 O servidor está configurado adequadamente, mas não encontrei mecanismos robustos de tratamento de erros nem logs. É importante adicionar essas funcionalidades para capturar problemas durante a execução.
 Faltam cabeçalhos de segurança no servidor. O uso de middlewares como helmet pode ser útil para evitar vulnerabilidades.
+
 AuthController.js:
 O controlador de autenticação está implementado de forma básica, mas seria bom adicionar criptografia de senhas usando bibliotecas como bcrypt para melhorar a segurança.
 A falta de um gerenciamento de tokens (ex: JWT) é um ponto que pode ser explorado para controlar o acesso de maneira mais segura.
 ProcessController.js:
 Os métodos de controle de processos parecem funcionar bem, mas seria interessante sanitizar as entradas do usuário para evitar injeção de SQL, utilizando pacotes como express-validator.
+
 3. Modelos (Banco de Dados):
 UserModel.js:
-
 Faltam verificações robustas ao manipular os dados do banco de dados. Sugiro adicionar validações antes de realizar queries.
 O modelo não está preparado para escalabilidade. Seria interessante implementar transações em operações críticas.
-ProcessModel.js:
 
+ProcessModel.js:
 Similar ao modelo de usuário, este modelo precisa de tratamento de erros mais robusto, especialmente para casos de falha no banco de dados.
 A lógica de atualização de processos parece funcional, mas o uso de JOINs ou relacionamentos com outras tabelas pode ser necessário em cenários mais complexos.
+
 4. Banco de Dados:
 db.sql:
 Não visualizei uma estrutura completa de todas as tabelas no arquivo db.sql. Verifique se todas as tabelas estão bem definidas, com índices e chaves estrangeiras para melhorar a performance e garantir a integridade dos dados.
+
 Melhorias Gerais:
 Segurança: Implementar sanitização de entradas e saídas de dados e proteção contra injeções de SQL.
 Desempenho: Verificar uso de índices no banco de dados e otimizar consultas.
