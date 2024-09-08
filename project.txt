@@ -29,12 +29,3 @@ views/EditProcess.js: Edição de processos.
 views/EditProfile.js: Edição de perfil de usuário.
 views/Login.js: Tela de login.
 views/UserProcesses.js: Processos do usuário.
-
-Pontos de Melhorias:
-
-ProcessModel.js:
-Similar ao modelo de usuário, este modelo precisa de tratamento de erros mais robusto, especialmente para casos de falha no banco de dados.
-A lógica de atualização de processos parece funcional, mas o uso de JOINs ou relacionamentos com outras tabelas pode ser necessário em cenários mais complexos.
-
-db.sql:
-Não visualizei uma estrutura completa de todas as tabelas no arquivo db.sql. Verifique se todas as tabelas estão bem definidas, com índices e chaves estrangeiras para melhorar a performance e garantir a integridade dos dados.
