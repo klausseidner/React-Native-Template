@@ -2,7 +2,9 @@
 // Página de visualização para edição de perfil
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
+////////////////////////////////////////////////////////////////////////////////////////////////////
 import React, { useState, useEffect } from 'react'; // Importa o módulo react
 import { View, TextInput, Button, Text, ActivityIndicator, Alert } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
@@ -19,12 +21,16 @@ export default function EditProfile({ navigation }) {
   const [loading, setLoading] = useState(false); // Define o estado de carregamento
   const [message, setMessage] = useState(''); // Define o estado de mensagem
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
   // Efeito colateral para buscar o perfil
+////////////////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     fetchProfile(); // Chama a função para buscar o perfil
   }, []);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
   // Função para buscar o perfil
+////////////////////////////////////////////////////////////////////////////////////////////////////
   const fetchProfile = async () => {
     try { // Tenta buscar o perfil
       setLoading(true); // Ativa o indicador de carregamento
@@ -41,7 +47,9 @@ export default function EditProfile({ navigation }) {
     }
   };
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
   // Função para atualizar o perfil
+////////////////////////////////////////////////////////////////////////////////////////////////////
   const updateProfile = async () => {
     try { // Tenta atualizar o perfil
       setLoading(true); // Ativa o indicador de carregamento
@@ -57,50 +65,53 @@ export default function EditProfile({ navigation }) {
   };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Retorna a interface de edição de perfil
+  // Retorna a interface de edição de perfil
 ////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
-    <View style={tailwind('p-4 bg-gray-100')}>
-      {loading && <ActivityIndicator size="large" color="#4F8EF7" style={tailwind('mb-4')} />}
+    <View style={tailwind('p-4 bg-gray-100')}> {/* Estilização com Tailwind */}
+      {loading && <ActivityIndicator size="large" color="#4F8EF7" style={tailwind('mb-4')} />} {/* Indicador de carregamento */}
       
-      <Text style={tailwind('text-lg font-bold mb-2')}>Nome:</Text>
-      <TextInput
-        value={name}
-        onChangeText={setName}
-        placeholder="Digite seu nome"
-        style={tailwind('border border-gray-300 p-2 mb-4 rounded')}
+      <Text style={tailwind('text-lg font-bold mb-2')}>Nome:</Text> {/* Título do campo */}
+      <TextInput // Campo de texto para o nome
+        value={name} // Valor do campo
+        onChangeText={setName} // Função para atualizar o campo
+        placeholder="Digite seu nome" // Texto de orientação
+        style={tailwind('border border-gray-300 p-2 mb-4 rounded')} // Estilização com Tailwind
       />
 
-      <Text style={tailwind('text-lg font-bold mb-2')}>Email:</Text>
-      <TextInput
-        value={email}
-        onChangeText={setEmail}
-        placeholder="Digite seu email"
-        style={tailwind('border border-gray-300 p-2 mb-4 rounded')}
+      <Text style={tailwind('text-lg font-bold mb-2')}>Email:</Text> {/* Título do campo */}
+      <TextInput // Campo de texto para o email
+        value={email} // Valor do campo
+        onChangeText={setEmail} // Função para atualizar o campo
+        placeholder="Digite seu email" // Texto de orientação
+        style={tailwind('border border-gray-300 p-2 mb-4 rounded')} // Estilização com Tailwind
       />
 
-      <Text style={tailwind('text-lg font-bold mb-2')}>RG:</Text>
-      <TextInput
-        value={rg}
-        editable={false}
-        style={tailwind('border border-gray-300 p-2 mb-4 rounded bg-gray-200')}
+      <Text style={tailwind('text-lg font-bold mb-2')}>RG:</Text> {/* Título do campo */}
+      <TextInput // Campo de texto para o RG
+        value={rg} // Valor do campo
+        editable={false} // Não editável
+        style={tailwind('border border-gray-300 p-2 mb-4 rounded bg-gray-200')} // Estilização com Tailwind
       />
 
-      <Text style={tailwind('text-lg font-bold mb-2')}>CPF:</Text>
-      <TextInput
-        value={cpf}
-        editable={false}
-        style={tailwind('border border-gray-300 p-2 mb-4 rounded bg-gray-200')}
+      <Text style={tailwind('text-lg font-bold mb-2')}>CPF:</Text> {/* Título do campo */}
+      <TextInput // Campo de texto para o CPF
+        value={cpf} // Valor do campo
+        editable={false} // Não editável
+        style={tailwind('border border-gray-300 p-2 mb-4 rounded bg-gray-200')} // Estilização com Tailwind
       />
 
-      {message ? <Text style={tailwind('text-red-500 mb-4 text-center')}>{message}</Text> : null}
+      {message ? <Text style={tailwind('text-red-500 mb-4 text-center')}>{message}</Text> : null} 
+      {/* Exibe a mensagem de erro */}
 
-      <Button
-        title="Salvar Alterações"
-        onPress={updateProfile}
-        color="#4F8EF7"
-        disabled={loading}
+      <Button // Botão para salvar as alterações
+        title="Salvar Alterações" // Título do botão
+        onPress={updateProfile} // Função para salvar as alterações
+        color="#4F8EF7" // Cor do botão
+        disabled={loading} // Desabilita o botão se estiver carregando
       />
-    </View>
+    </View> // Indicador de carregamento
   );
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////

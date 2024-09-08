@@ -2,7 +2,9 @@
 // Página de visualização para edição de processos
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
+////////////////////////////////////////////////////////////////////////////////////////////////////
 import React, { useState, useEffect } from 'react'; // Importa o módulo react
 import { View, TextInput, Button, Text, Picker, ActivityIndicator, Alert } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
@@ -19,12 +21,16 @@ export default function EditProcess({ route, navigation }) {
   const [loading, setLoading] = useState(false); // Define o estado de carregamento
   const [message, setMessage] = useState(''); // Define o estado de mensagem
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
   // Efeito colateral para buscar o processo
+////////////////////////////////////////////////////////////////////////////////////////////////////
   useEffect(() => {
     fetchProcess(); // Chama a função para buscar o processo
   }, []);
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
   // Função para buscar o processo
+////////////////////////////////////////////////////////////////////////////////////////////////////
   const fetchProcess = async () => {
     try { // Tenta buscar o processo
       setLoading(true); // Ativa o indicador de carregamento
@@ -41,7 +47,9 @@ export default function EditProcess({ route, navigation }) {
     }
   };
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
   // Função para atualizar o processo
+////////////////////////////////////////////////////////////////////////////////////////////////////
   const updateProcess = async () => {
     try { // Tenta atualizar o processo
       setLoading(true); // Ativa o indicador de carregamento
@@ -57,51 +65,54 @@ export default function EditProcess({ route, navigation }) {
   };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Retorna a interface de edição de processo
+  // Retorna a interface de edição de processo
 ////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
-    <View style={tailwind('p-4 bg-gray-100')}>
-      {loading && <ActivityIndicator size="large" color="#4F8EF7" style={tailwind('mb-4')} />}
+    <View style={tailwind('p-4 bg-gray-100')}> {/* Estilização com Tailwind */}
+      {loading && <ActivityIndicator size="large" color="#4F8EF7" style={tailwind('mb-4')} />} {/* Indicador de carregamento */}
       
-      <Text style={tailwind('text-lg font-bold mb-2')}>Título:</Text>
-      <TextInput
-        value={title}
-        onChangeText={setTitle}
-        placeholder="Atualize o título do processo"
-        style={tailwind('border border-gray-300 p-2 mb-4 rounded')}
+      <Text style={tailwind('text-lg font-bold mb-2')}>Título:</Text> {/* Título do campo */}
+      <TextInput // Campo de texto para o título
+        value={title} // Valor do campo
+        onChangeText={setTitle} // Função para atualizar o campo
+        placeholder="Atualize o título do processo" // Texto de orientação
+        style={tailwind('border border-gray-300 p-2 mb-4 rounded')} // Estilização com Tailwind
       />
 
-      <Text style={tailwind('text-lg font-bold mb-2')}>Descrição:</Text>
-      <TextInput
-        value={description}
-        onChangeText={setDescription}
-        placeholder="Atualize a descrição"
-        style={tailwind('border border-gray-300 p-2 mb-4 rounded h-24')}
-        multiline
+      <Text style={tailwind('text-lg font-bold mb-2')}>Descrição:</Text> {/* Título do campo */}
+      <TextInput // Campo de texto para a descrição
+        value={description} // Valor do campo
+        onChangeText={setDescription} // Função para atualizar o campo
+        placeholder="Atualize a descrição" // Texto de orientação
+        style={tailwind('border border-gray-300 p-2 mb-4 rounded h-24')} // Estilização com Tailwind
+        multiline // Permite múltiplas linhas
       />
 
-      <Text style={tailwind('text-lg font-bold mb-2')}>Opção:</Text>
-      <Picker
-        selectedValue={option}
-        onValueChange={(itemValue) => setOption(itemValue)}
-        style={tailwind('border border-gray-300 p-2 mb-4 rounded')}
+      <Text style={tailwind('text-lg font-bold mb-2')}>Opção:</Text> {/* Título do campo */}
+      <Picker // Campo de seleção de opção
+        selectedValue={option} // Valor selecionado
+        onValueChange={(itemValue) => setOption(itemValue)} // Função para atualizar o campo
+        style={tailwind('border border-gray-300 p-2 mb-4 rounded')} // Estilização com Tailwind
       >
-        <Picker.Item label="1" value="1" />
-        <Picker.Item label="2" value="2" />
-        <Picker.Item label="3" value="3" />
-        <Picker.Item label="4" value="4" />
-        <Picker.Item label="5" value="5" />
-        <Picker.Item label="6" value="6" />
-      </Picker>
+        <Picker.Item label="1" value="1" /> {/* Opção 1 */}
+        <Picker.Item label="2" value="2" /> {/* Opção 2 */}
+        <Picker.Item label="3" value="3" /> {/* Opção 3 */}
+        <Picker.Item label="4" value="4" /> {/* Opção 4 */}
+        <Picker.Item label="5" value="5" /> {/* Opção 5 */}
+        <Picker.Item label="6" value="6" /> {/* Opção 6 */}
+      </Picker> {/* Campo de seleção de opção */}
 
-      {message ? <Text style={tailwind('text-red-500 mb-4 text-center')}>{message}</Text> : null}
+      {message ? <Text style={tailwind('text-red-500 mb-4 text-center')}>{message}</Text> : null} 
+      {/* Exibe a mensagem de erro */}
 
-      <Button
-        title="Atualizar Processo"
-        onPress={updateProcess}
-        color="#4F8EF7"
-        disabled={loading}
+      <Button // Botão para submeter o processo
+        title="Atualizar Processo" // Título do botão
+        onPress={updateProcess} // Função para submeter o processo
+        color="#4F8EF7" // Cor do botão
+        disabled={loading} // Desabilita o botão se estiver carregando
       />
-    </View>
+    </View> // Indicador de carregamento
   );
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
