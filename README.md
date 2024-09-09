@@ -137,9 +137,9 @@
 
 ## 🍺 Me Pague uma cerveja! 🍺
 
-[![BTC Wallet](https://en.cryptobadges.io/badge/big/0x0)](https://en.cryptobadges.io/donate/0x0)
-[![ETH Wallet](https://en.cryptobadges.io/badge/big/0x0)](https://en.cryptobadges.io/donate/0x0)
-[![SOL Wallet](https://en.cryptobadges.io/badge/big/0x0)](https://en.cryptobadges.io/donate/0x0)
+[![BTC Wallet](http://img.shields.io/badge/Bitcoin-000000?style=flat&logo=bitcoin&logoColor=white)](https://www.blockchain.com/btc/address/1KfZvQv2z3v6Zvqj7)
+[![ETH Wallet](http://img.shields.io/badge/Ethereum-000000?style=flat&logo=ethereum&logoColor=white)](https://www.blockchain.com/eth/address/0x)
+[![SOL Wallet](http://img.shields.io/badge/Solana-000000?style=flat&logo=solana&logoColor=white)](https://www.blockchain.com/sol/address/)
 
 ## 📌 Documentação
 
