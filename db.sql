@@ -6,7 +6,7 @@ CREATE TABLE users ( # Tabela de usuários
   rg VARCHAR(12) UNIQUE NOT NULL, # RG do usuário
   cpf VARCHAR(14) UNIQUE NOT NULL, # CPF do usuário
   role ENUM('comum', 'administrativo') DEFAULT 'comum', # Papel do usuário
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, # Data de criação do usuário
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, # xData de criação do usuário
   INDEX (email), # Índice do e-mail
   INDEX (rg), # Índice do RG
   INDEX (cpf) # Índice do CPF
@@ -18,9 +18,9 @@ CREATE TABLE processes ( # Tabela de processos
   title VARCHAR(255) NOT NULL, # Título do processo
   description TEXT, # Descrição do processo
   option INT CHECK(option BETWEEN 1 AND 6) DEFAULT 1,  # Valor padrão adicionado
-  status ENUM('ativo', 'em processo', 'concluído', 'repugnado') DEFAULT 'ativo', # Status do processo
+  status ENUM('ativo', 'em processo', 'concluído', 'repugnado') DEFAULT 'ativo', # xStatus do processo
   version INT DEFAULT 1,  # Versão do processo 
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, # Data de criação do processo
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, # xData de criação do processo
   FOREIGN KEY (user_id) REFERENCES users(id), # Chave estrangeira do usuário
   INDEX (user_id) # Índice do ID do usuário
 ); 
