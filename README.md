@@ -107,8 +107,7 @@
 
 4. Clone o repositório e navegue até a pasta do backend:
    ```bash
-   git clone https://github.com/usuario/projeto.git
-   cd backend
+   git clone https://github.com/klausseidner/React-Native-Template.git
 
 5. Instale as dependências:
     ```bash
