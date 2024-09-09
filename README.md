@@ -36,7 +36,7 @@
 - **Validação de Dados**: Express-validator
 - **Segurança**: bcrypt (criptografia de senhas), cors (Cross-Origin Resource Sharing), express-rate-limit (limitação de requisições), helmet (proteção de cabeçalhos HTTP) e secure-store (armazenamento seguro de tokens)
 
-## 📂 Repository Structure
+## 📂 Estrutura do Repositório
 
 ```sh
 └── React-Native-Template/
