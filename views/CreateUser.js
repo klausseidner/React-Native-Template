@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import React, { useState } from 'react'; // Importa o React e o useState
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'; // Importa View, Text, TextInput, Button e StyleSheet
-import { createUser } from '../services/UserService'; // Importa a função createUser do arquivo UserService
+import { createUser } from ''; // Importa a função createUser do arquivo UserService
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Função CreateUser
