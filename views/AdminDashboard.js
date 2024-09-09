@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react'; // Importa o módulo react e os hooks de estado e efeito
 import { View, Text, Button, Picker, ActivityIndicator, Alert } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
-import api from '../middleware/api'; // Importa a instância da API
+import api from '../utils/api'; // Importa a instância da API
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de visualização para o dashboard do administrador

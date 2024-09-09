@@ -8,7 +8,7 @@
 import React, { useState } from 'react'; // Importa o módulo react e os hooks de estado
 import { View, TextInput, Button, Text, TouchableOpacity, ActivityIndicator } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
-import api from '../middleware/api'; // Importa a instância da API
+import api from '../utils/api'; // Importa a instância da API
 import * as SecureStore from 'expo-secure-store'; // Importa o SecureStore para armazenamento seguro
 import { useAuth } from '../context/AuthContext'; // Importe o contexto de autenticação
 

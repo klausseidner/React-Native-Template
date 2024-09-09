@@ -8,7 +8,7 @@
 import React, { useState, useEffect } from 'react'; // Importa o módulo react
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
-import api from '../middleware/api'; // Importa a instância da API
+import api from '../utils/api'; // Importa a instância da API
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de visualização para processos do usuário

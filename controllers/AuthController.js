@@ -1,97 +1,108 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Arquivo responsável por controlar a autenticação dos usuários
+// Controlador de autenticação
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const UserModel = require('../models/UserModel'); // Importa o modelo de usuário
 const bcrypt = require('bcrypt'); // Importa o módulo bcrypt
 const jwt = require('jsonwebtoken'); // Importa o módulo jsonwebtoken
-
-// Define uma chave secreta para assinar os tokens JWT (mantenha isso seguro e fora do código em produção)
-const JWT_SECRET = 'minha_chave_secreta'; 
-const JWT_EXPIRATION = '1h'; // Define o tempo de expiração do token
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Controlador de autenticação
-////////////////////////////////////////////////////////////////////////////////////////////////////
-const AuthController = { 
+const { validationResult } = require('express-validator'); // Importa a função de validação de entrada
+const UserModel = require('../models/UserModel'); // Importa o modelo de usuário
+const { generateToken } = require('../utils/tokenUtils'); // Importa a função de geração de token
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Função de login
+// Função de registro de usuário
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-  async login(req, res) { 
-    const { email, password } = req.body; // Obtém o email e a senha do corpo da requisição
+const AuthController = {
 
-    try { // Busca um usuário pelo email
-      const user = await UserModel.findByEmail(email); // Busca um usuário pelo email
+////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Função de registro de usuário
+////////////////////////////////////////////////////////////////////////////////////////////////////
+  async register(req, res) { 
+    const errors = validationResult(req); // Validação de entrada
+    // Se houver erros, retorna os erros
+    if (!errors.isEmpty()) {  
+      return res.status(400).json({ errors: errors.array() }); // Retorna os erros
+    }
 
-      // Se o usuário não existir ou a senha estiver incorreta
-      if (!user || !bcrypt.compareSync(password, user.password)) { 
-        return res.status(401).json({ message: 'Credenciais inválidas' }); // Retorna um erro 401
+    const { email, password, name } = req.body; // Extrai os dados do corpo da requisição
+    try { // Tenta executar o código
+      const existingUser = await UserModel.findOne({ email }); // Verifica se o usuário já existe
+      // Se o usuário já existe, retorna uma mensagem de erro
+      if (existingUser) {
+        return res.status(400).json({ message: 'Usuário já existe' }); // Retorna uma mensagem de erro
       }
 
-      // Se o usuário existir e a senha estiver correta, gera um token JWT
-      const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
+      const hashedPassword = bcrypt.hashSync(password, 10); // Gera um hash da senha
+      const newUser = await UserModel.create({ email, password: hashedPassword, name }); // Cria um novo usuário
 
-      // Retorna o token de autenticação
-      return res.json({ token });
-      
-    } catch (error) { // Se ocorrer um erro
-      console.error("Erro ao realizar login: ", error); // Loga o erro no console
-      return res.status(500).json({ message: 'Erro ao realizar login' }); // Retorna um erro 500
+      const token = generateToken(newUser); // Gera um token
+      return res.json({ token, user: { id: newUser.id, email: newUser.email, name: newUser.name } }); // Retorna o token e os dados do usuário
+
+    } catch (error) { // Se houver um erro, exibe o erro
+      console.error("Erro ao registrar usuário:", error); // Exibe o erro
+      return res.status(500).json({ message: 'Erro ao registrar usuário' }); // Retorna uma mensagem de erro
     }
   },
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Função para registrar um novo usuário (com criptografia de senha)
+  // Função de login de usuário
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-  async register(req, res) {
-    const { email, password, name } = req.body; // Obtém o email, senha e nome do corpo da requisição
+  async login(req, res) {
+    const errors = validationResult(req); // Validação de entrada
+    // Se houver erros, retorna os erros
+    if (!errors.isEmpty()) { 
+      return res.status(400).json({ errors: errors.array() }); // Retorna os erros
+    }
 
-    try { // Verifica se o usuário já existe
-      const existingUser = await UserModel.findByEmail(email); // Busca um usuário pelo email
-      if (existingUser) { // Se o usuário já existir
-        return res.status(400).json({ message: 'Usuário já registrado com este email' }); // Retorna um erro 400
+    const { email, password } = req.body; // Extrai os dados do corpo da requisição
+    try { // Tenta executar o código
+      const user = await UserModel.findOne({ email }); // Busca o usuário pelo e-mail
+      // Se o usuário não existe, retorna uma mensagem de erro
+      if (!user) {
+        return res.status(400).json({ message: 'Credenciais inválidas' }); // Retorna uma mensagem de erro
       }
 
-      // Criptografa a senha
-      const hashedPassword = bcrypt.hashSync(password, 10); // 10 rounds para gerar o hash seguro
+      const isMatch = bcrypt.compareSync(password, user.password); // Compara as senhas
+      // Se as senhas não coincidem, retorna uma mensagem de erro
+      if (!isMatch) { 
+        return res.status(400).json({ message: 'Credenciais inválidas' }); // Retorna uma mensagem de erro
+      }
 
-      // Cria o novo usuário
-      const newUser = await UserModel.create({ email, password: hashedPassword, name });
+      const token = generateToken(user); // Gera um token
+      return res.json({ token, user: { id: user.id, email: user.email, name: user.name } }); // Retorna o token e os dados do usuário
 
-      // Gera um token JWT para o novo usuário
-      const token = jwt.sign({ id: newUser.id, role: newUser.role }, JWT_SECRET, { expiresIn: JWT_EXPIRATION });
-
-      // Retorna o token e os dados do usuário recém-criado
-      return res.json({ token, user: { id: newUser.id, email: newUser.email, name: newUser.name } });
-      
-    } catch (error) { // Se ocorrer um erro
-      console.error("Erro ao registrar usuário: ", error); // Loga o erro no console
-      return res.status(500).json({ message: 'Erro ao registrar usuário' }); // Retorna um erro 500
+    } catch (error) { // Se houver um erro, exibe o erro
+      console.error("Erro ao fazer login:", error); // Exibe o erro
+      return res.status(500).json({ message: 'Erro ao fazer login' }); // Retorna uma mensagem de erro
     }
   },
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-  // Função para verificar o token JWT
+  // Função de logout (gerenciamento do lado cliente)
+////////////////////////////////////////////////////////////////////////////////////////////////////
+  logout(req, res) {
+    // O logout geralmente é tratado no cliente ao remover o token, mas pode haver lógica adicional aqui.
+    return res.status(200).json({ message: 'Logout bem-sucedido' }); // Retorna uma mensagem de sucesso
+  },
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+  // Função de verificação de token
 ////////////////////////////////////////////////////////////////////////////////////////////////////
   verifyToken(req, res, next) {
-    const token = req.headers['authorization']; // Obtém o token do cabeçalho Authorization
-
-    // Se o token não for fornecido
+    const token = req.headers['authorization']; // Extrai o token do cabeçalho da requisição
+    // Se o token não foi fornecido, retorna uma mensagem de erro
     if (!token) {
-      return res.status(403).json({ message: 'Token não fornecido' }); // Retorna um erro 403
+      return res.status(403).json({ message: 'Token não fornecido' }); // Retorna uma mensagem de erro
     }
 
-    try { // Verifica e decodifica o token
-      const decoded = jwt.verify(token, JWT_SECRET); // Decodifica o token com a chave secreta
-      req.user = decoded; // Armazena as informações do usuário no request
-
-      next(); // Prossegue para a próxima função middleware ou rota
-    } catch (error) { // Se o token for inválido ou expirado
-      return res.status(401).json({ message: 'Token inválido ou expirado' }); // Retorna um erro 401
+    try { // Tenta executar o código
+      const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verifica o token
+      req.user = decoded; // Adiciona o usuário decodificado ao objeto de requisição
+      next(); // Chama o próximo middleware
+    } catch (error) { // Se houver um erro, exibe o erro
+      return res.status(401).json({ message: 'Token inválido ou expirado' }); // Retorna uma mensagem de erro
     }
   }
 };

@@ -1,83 +1,51 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Arquivo de configuração do servidor
+// Backend para aplicação de gerenciamento de processos
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const express = require('express'); // Importa o módulo express
+const cors = require('cors'); // Importa o módulo cors
 const bodyParser = require('body-parser'); // Importa o módulo body-parser
-const helmet = require('helmet'); // Importa o módulo helmet para segurança
-const winston = require('winston'); // Importa winston para logs
+const dotenv = require('dotenv'); // Importa o módulo dotenv
+const rateLimit = require('express-rate-limit'); // Importa o módulo express-rate-limit
+const morgan = require('morgan'); // Adiciona Morgan para logs de requisições
 const authRoutes = require('./routes/authRoutes'); // Importa as rotas de autenticação
 const processRoutes = require('./routes/processRoutes'); // Importa as rotas de processos
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Configuração do Logger
-////////////////////////////////////////////////////////////////////////////////////////////////////
-const logger = winston.createLogger({ // Cria um logger com winston
-  level: 'info', // Define o nível de log como info
-  format: winston.format.combine( // Define o formato do log
-    winston.format.timestamp(), // Adiciona um timestamp
-    winston.format.json() // Define o formato como JSON
-  ),
-  transports: [ // Define os transportes de log
-    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }), // Armazena logs de erro
-    new winston.transports.File({ filename: 'logs/combined.log' }), // Armazena logs combinados
-  ],
+dotenv.config(); // Carrega as variáveis de ambiente
+const app = express(); // Cria uma instância do express
+const PORT = process.env.PORT || 5000; // Define a porta do servidor
+
+// Configuração de CORS e Morgan para logs
+const corsOptions = {
+  origin: process.env.CLIENT_URL || 'https://seu-dominio.com', // URL do cliente
+  optionsSuccessStatus: 200, // Código de status de sucesso
+};
+app.use(cors(corsOptions)); // Habilita o CORS
+app.use(morgan('dev')); // Log das requisições
+
+app.use(bodyParser.json()); // Habilita o body-parser
+
+// Middleware de rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 100, // Limite de 100 requisições
+  message: "Muitas requisições feitas pelo mesmo IP, tente novamente mais tarde.", // Mensagem de erro
+});
+app.use('/api/auth/login', limiter); // Aplica o rate limiting nas requisições de login
+
+app.use('/api/auth', authRoutes); // Rotas de autenticação
+app.use('/api/process', processRoutes); // Rotas de processos
+
+app.use((err, req, res, next) => {
+  console.error(err.stack); // Exibe o erro no console
+  res.status(500).json({ message: 'Erro interno no servidor' }); // Retorna uma mensagem de erro
 });
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Se não estivermos em produção, loga também no console
-////////////////////////////////////////////////////////////////////////////////////////////////////
-if (process.env.NODE_ENV !== 'production') { // Se não estivermos em produção
-  logger.add(new winston.transports.Console({ // Adiciona um transporte de log para o console
-    format: winston.format.simple(), // Define o formato do log como simples
-  }));
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Inicialização do aplicativo Express
-////////////////////////////////////////////////////////////////////////////////////////////////////
-const app = express();
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Middlewares de segurança e parsing
-////////////////////////////////////////////////////////////////////////////////////////////////////
-app.use(helmet()); // Adiciona headers de segurança com helmet
-app.use(bodyParser.json()); // Adiciona o body-parser para interpretar JSON
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Rotas
-////////////////////////////////////////////////////////////////////////////////////////////////////
-app.use('/auth', authRoutes); // Adiciona as rotas de autenticação
-app.use('/api', processRoutes); // Adiciona as rotas de processos
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Middleware de erro (captura todos os erros e loga)
-////////////////////////////////////////////////////////////////////////////////////////////////////
-app.use((err, req, res, next) => { // Middleware de erro
-  logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`); // Loga o erro
-  res.status(err.status || 500).json({ // Retorna o erro como JSON
-    error: { // Objeto de erro
-      message: err.message || 'Erro interno do servidor', // Mensagem de erro
-    },
-  });
-});
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Middleware para rotas não encontradas
-////////////////////////////////////////////////////////////////////////////////////////////////////
-app.use((req, res, next) => { // Middleware para rotas não encontradas
-  res.status(404).json({ message: 'Rota não encontrada' }); // Retorna uma mensagem de rota não encontrada
-});
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// Inicia o servidor na porta 3000
-////////////////////////////////////////////////////////////////////////////////////////////////////
-app.listen(3000, () => { 
-  logger.info('Servidor rodando na porta 3000'); // Loga que o servidor está rodando
-  console.log('Servidor rodando na porta 3000'); // Exibe a mensagem de servidor rodando no console
+app.listen(PORT, () => { // Inicia o servidor
+  console.log(`Servidor rodando na porta ${PORT}`); // Exibe a mensagem de servidor rodando
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

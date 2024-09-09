@@ -8,7 +8,7 @@
 import React, { useState } from 'react'; // Importa o módulo react
 import { View, TextInput, Button, Text, Picker, ActivityIndicator, Alert } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
-import api from '../middleware/api'; // Importa a instância da API
+import api from '../utils/api'; // Importa a instância da API
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de visualização para criação de processos

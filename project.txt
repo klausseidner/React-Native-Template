@@ -10,7 +10,6 @@ controllers/AuthController.js: Controle de autenticação.
 controllers/ProcessController.js: Controle de processos.
 
 Middlewares:
-middleware/api.js: Middleware de API.
 middleware/authMiddleware.js: Middleware de autenticação.
 
 Modelos:
@@ -29,3 +28,7 @@ views/EditProcess.js: Edição de processos.
 views/EditProfile.js: Edição de perfil de usuário.
 views/Login.js: Tela de login.
 views/UserProcesses.js: Processos do usuário.
+
+Utils:
+utils/tokenUtils.js: Funções de manipulação de tokens.
+utils/api.js: Funções de requisição à API.
