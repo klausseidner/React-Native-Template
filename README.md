@@ -39,51 +39,51 @@
 ## 📂 Estrutura do Repositório
 
 ```sh
-└── React-Native-Template/
-    ├── App.js
-    ├── LICENSE
-    ├── README.md
-    ├── components
-    │   ├── Button.js
-    │   ├── Carrossel.js
-    │   ├── Charts.js
-    │   ├── Footer.js
-    │   ├── Forms.js
-    │   ├── Header.js
-    │   ├── Menu.js
-    │   ├── Modal.js
-    │   └── Table.js
-    ├── config
-    │   └── db.js
-    ├── context
-    │   └── AuthContext.js
-    ├── controllers
-    │   ├── AuthController.js
-    │   └── ProcessController.js
-    ├── db.sql
-    ├── middleware
-    │   └── authMiddleware.js
-    ├── models
-    │   ├── ProcessModel.js
-    │   └── UserModel.js
-    ├── package.json
-    ├── project.txt
-    ├── routes
-    │   ├── authRoutes.js
-    │   └── processRoutes.js
-    ├── server.js
-    ├── utils
-    │   ├── api.js
-    │   └── tokenUtils.js
-    └── views
-        ├── AdminDashboard.js
-        ├── AdminEditProcess.js
-        ├── CreateProcess.js
-        ├── CreateUser.js
-        ├── EditProcess.js
-        ├── EditProfile.js
-        ├── Login.js
-        └── UserProcesses.js
+└── React-Native-Template/ # Raiz do projeto
+    ├── App.js # Arquivo principal do aplicativo
+    ├── LICENSE # Licença do projeto
+    ├── README.md # Documentação do projeto
+    ├── components # Componentes do aplicativo
+    │   ├── Button.js # Botão customizado
+    │   ├── Carrossel.js # Carrossel de imagens
+    │   ├── Charts.js # Gráficos
+    │   ├── Footer.js # Rodapé
+    │   ├── Forms.js # Formulários
+    │   ├── Header.js # Cabeçalho
+    │   ├── Menu.js # Menu de navegação
+    │   ├── Modal.js # Modal
+    │   └── Table.js # Tabela
+    ├── config # Configurações do aplicativo
+    │   └── db.js # Configuração do banco de dados
+    ├── context # Contextos do aplicativo
+    │   └── AuthContext.js # Contexto de autenticação
+    ├── controllers # Controladores do aplicativo
+    │   ├── AuthController.js # Controlador de autenticação
+    │   └── ProcessController.js # Controlador de processos
+    ├── db.sql # Script SQL para criação do banco de dados
+    ├── middleware # Middlewares do aplicativo
+    │   └── authMiddleware.js # Middleware de autenticação
+    ├── models # Modelos do aplicativo
+    │   ├── ProcessModel.js # Modelo de processos
+    │   └── UserModel.js # Modelo de usuários
+    ├── package.json # Arquivo de configuração do npm
+    ├── project.txt # Informações do projeto
+    ├── routes # Rotas do aplicativo
+    │   ├── authRoutes.js # Rotas de autenticação
+    │   └── processRoutes.js # Rotas de processos
+    ├── server.js # Arquivo principal do servidor
+    ├── utils # Utilitários do aplicativo
+    │   ├── api.js # Funções de requisição
+    │   └── tokenUtils.js # Funções de token
+    └── views # Telas do aplicativo
+        ├── AdminDashboard.js # Painel de controle do administrador
+        ├── AdminEditProcess.js # Edição de processos pelo administrador
+        ├── CreateProcess.js # Criação de processos
+        ├── CreateUser.js # Criação de usuários
+        ├── EditProcess.js # Edição de processos
+        ├── EditProfile.js # Edição de perfil
+        ├── Login.js # Tela de login
+        └── UserProcesses.js # Processos do usuário
 ```
 
 ---
