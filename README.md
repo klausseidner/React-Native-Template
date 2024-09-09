@@ -8,9 +8,10 @@
 </p>
 <p align="center">
     <h3 align="center">
-        ❯ Este projeto é um aplicativo de gerenciamento de processos desenvolvido utilizando **React Native** com **Tailwind CSS** no frontend e **Node.js** (Express) no backend. A autenticação é baseada em **JSON Web Token** (JWT), e o banco de dados utilizado é o **MySQL**. O objetivo é fornecer uma plataforma robusta para gerenciar processos de forma eficiente, com segurança garantida através de tokens JWT.
+        ❯ Este projeto é um aplicativo de gerenciamento de processos desenvolvido utilizando <strong>React Native</strong> com <strong>Tailwind CSS</strong> no frontend e <strong>Node.js</strong> (Express) no backend. A autenticação é baseada em <strong>JSON Web Token</strong> (JWT), e o banco de dados utilizado é o <strong>MySQL</strong>. O objetivo é fornecer uma plataforma robusta para gerenciar processos de forma eficiente, com segurança garantida através de tokens JWT.
     </h3>
 </p>
+<br>
 <p align="center">
 	<img src="https://img.shields.io/github/license/klausseidner/React-Native-Template?style=flat&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/klausseidner/React-Native-Template?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
