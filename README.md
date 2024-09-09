@@ -18,9 +18,6 @@
 	<img src="https://img.shields.io/github/languages/count/klausseidner/React-Native-Template?style=flat&color=0080ff" alt="repo-language-count">
 </p>
 <p align="center">
-		<em>Built with the tools and technologies:</em>
-</p>
-<p align="center">
 	<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black" alt="JavaScript">
 	<img src="https://img.shields.io/badge/Jest-C21325.svg?style=flat&logo=Jest&logoColor=white" alt="Jest">
 	<img src="https://img.shields.io/badge/Nodemon-76D04B.svg?style=flat&logo=Nodemon&logoColor=white" alt="Nodemon">
