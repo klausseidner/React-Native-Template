@@ -3,15 +3,13 @@
 </p>
 <p align="center">
     <h1 align="center">
-        Visão Geral
+        Projeto de Gerenciamento de Processos
     </h1>
 </p>
 <p align="center">
-    <em>
         <code>
         ❯ Este projeto é um aplicativo de gerenciamento de processos desenvolvido utilizando **React Native** com **Tailwind CSS** no frontend e **Node.js** (Express) no backend. A autenticação é baseada em **JSON Web Token** (JWT), e o banco de dados utilizado é o **MySQL**. O objetivo é fornecer uma plataforma robusta para gerenciar processos de forma eficiente, com segurança garantida através de tokens JWT.
         </code>
-    </em>
 </p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/klausseidner/React-Native-Template?style=flat&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
