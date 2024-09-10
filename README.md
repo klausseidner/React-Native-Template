@@ -138,7 +138,9 @@
     DB_PASSWORD=sua_senha
     DB_NAME=nome_do_banco
 
-7. Inicie o servidor:
+7. Importe o arquivo `db.sql` para o MySQL para criar o banco de dados e as tabelas.
+
+8. Inicie o servidor:
     ```bash
     npm start
 
