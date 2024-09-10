@@ -153,7 +153,7 @@
 
 [![BTC Wallet](http://img.shields.io/badge/Bitcoin-000000?style=flat&logo=bitcoin&logoColor=white)](https://www.blockchain.com/btc/address/bc1qtfh4asd7jhyxxpnk0254c2tr6zy4p3aagr9lnc)
 [![ETH Wallet](http://img.shields.io/badge/Ethereum-000000?style=flat&logo=ethereum&logoColor=white)](https://www.blockchain.com/eth/address/0x4bdebD8AA648a88f06Acc7944Ab852676eF059d1)
-[![SOL Wallet](http://img.shields.io/badge/Solana-000000?style=flat&logo=solana&logoColor=white)](https://www.blockchain.com/sol/address/2NWJyYUx4YgdAWkr4pbjbqQvtSGCFH44mqJ1gHnfxu3L)
+[![SOL Wallet](http://img.shields.io/badge/Solana-000000?style=flat&logo=solana&logoColor=white)](https://solscan.io/account/2NWJyYUx4YgdAWkr4pbjbqQvtSGCFH44mqJ1gHnfxu3L)
 
 ## 📌 Documentação
 
