@@ -10,6 +10,11 @@ import { View, Text, Button, Picker, ActivityIndicator, Alert } from 'react-nati
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
 
+// Importações de componentes
+import Header from '../components/Header'; // Importa o componente de cabeçalho
+import Menu from '../components/Menu'; // Importa o componente de menu
+import Footer from '../components/Footer'; // Importa o componente de rodapé
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de visualização para o dashboard do administrador
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +67,8 @@ export default function AdminDashboard() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <View style={tailwind('p-4 bg-gray-100')}> {/* Estilização com Tailwind */}
+      {/* Cabeçalho */}
+      <Header />
       {loading ? ( // Se estiver carregando
         <ActivityIndicator size="large" color="#4F8EF7" style={tailwind('mt-10')} /> // Exibe o indicador de carregamento
       ) : error ? ( // Se houver erro
@@ -94,6 +101,10 @@ export default function AdminDashboard() {
           </View> // Fecha a visualização do processo
         ))
       )}
+      {/* Menu */}
+      <Menu />
+      {/* Rodapé */}
+      <Footer />
     </View> // Fecha a visualização do dashboard do administrador
   );
 }

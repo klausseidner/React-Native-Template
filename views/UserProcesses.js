@@ -10,6 +10,11 @@ import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
 
+// Importações de componentes
+import Header from '../components/Header'; // Importa o componente de cabeçalho
+import Menu from '../components/Menu'; // Importa o componente de menu
+import Footer from '../components/Footer'; // Importa o componente de rodapé
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de visualização para processos do usuário
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,6 +55,8 @@ export default function UserProcesses({ navigation }) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <View style={tailwind('p-4 bg-gray-100 flex-1')}> {/* Estilização com Tailwind */}
+      {/* Cabeçalho */}
+      <Header />
       {loading ? ( // Se estiver carregando
         <ActivityIndicator size="large" color="#4F8EF7" style={tailwind('mt-4')} /> // Exibe o indicador de carregamento
       ) : ( // Senão
@@ -77,6 +84,10 @@ export default function UserProcesses({ navigation }) {
           )}
         </>
       )}
+      {/* Menu */}
+      <Menu />
+      {/* Rodapé */}
+      <Footer />
     </View> // Exibe a interface de processos do usuário
   );
 }

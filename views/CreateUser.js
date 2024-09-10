@@ -9,6 +9,11 @@ import React, { useState } from 'react'; // Importa o React e o useState
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'; // Importa View, Text, TextInput, Button e StyleSheet
 import { createUser } from ''; // Importa a função createUser do arquivo UserService
 
+// Importações de componentes
+import Header from '../components/Header'; // Importa o componente de cabeçalho
+import Menu from '../components/Menu'; // Importa o componente de menu
+import Footer from '../components/Footer'; // Importa o componente de rodapé
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Função CreateUser
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -29,20 +34,22 @@ const CreateUser = ({ navigation }) => { // Função CreateUser que recebe a nav
     // Retorno
 ////////////////////////////////////////////////////////////////////////////////////////////////////
     return ( // Retorna
-        <View style={styles.container}> {/* View com estilo container */}
-            <Text style={styles.title}>Criar novo usuário</Text> {/* Texto com estilo title */}
+        <View style={tailwind('p-4 bg-gray-100')}> {/* Estilização com Tailwind */}
+            {/* Cabeçalho */}
+             <Header />
+            <Text style={tailwind('text-lg font-bold mb-2')}>Nome:</Text> {/* Título do campo */}
             <TextInput // TextInput
-                style={styles.input} // Estilo input
+                style={tailwind('border border-gray-300 p-2 mb-4 rounded')} // Estilo input
                 placeholder='Nome' // Placeholder Nome
                 onChangeText={setName} // Função para alterar o estado name
             />
             <TextInput // TextInput
-                style={styles.input} // Estilo input
+                style={tailwind('border border-gray-300 p-2 mb-4 rounded')} // Estilo input
                 placeholder='Email' // Placeholder Email
                 onChangeText={setEmail} // Função para alterar o estado email
             />
             <TextInput // TextInput
-                style={styles.input} // Estilo input
+                style={tailwind('border border-gray-300 p-2 mb-4 rounded')} // Estilo input
                 placeholder='Senha' // Placeholder Senha
                 onChangeText={setPassword} // Função para alterar o estado password
                 secureTextEntry // Texto seguro
@@ -51,6 +58,10 @@ const CreateUser = ({ navigation }) => { // Função CreateUser que recebe a nav
                 title='Criar' // Título Criar
                 onPress={handleCreateUser} // Função para criar um novo usuário
             />
+            {/* Menu */}
+            <Menu />
+            {/* Rodapé */}
+            <Footer />
         </View> // Fecha View
     );
 }

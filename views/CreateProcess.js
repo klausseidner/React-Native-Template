@@ -10,6 +10,11 @@ import { View, TextInput, Button, Text, Picker, ActivityIndicator, Alert } from 
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
 
+// Importações de componentes
+import Header from '../components/Header'; // Importa o componente de cabeçalho
+import Menu from '../components/Menu'; // Importa o componente de menu
+import Footer from '../components/Footer'; // Importa o componente de rodapé
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de visualização para criação de processos
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +50,8 @@ export default function CreateProcess({ navigation }) { // Exporta a função de
 ////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <View style={tailwind('p-4 bg-gray-100')}> {/* Estilização com Tailwind */}
+      {/* Cabeçalho */}
+      <Header />
       <Text style={tailwind('text-lg font-bold mb-2')}>Título:</Text> {/* Título do campo */}
       <TextInput // Campo de texto para o título
         value={title} // Valor do campo
@@ -87,6 +94,10 @@ export default function CreateProcess({ navigation }) { // Exporta a função de
       /> {/* Botão para submeter o processo */}
       
       {loading && <ActivityIndicator size="large" color="#4F8EF7" style={tailwind('mt-4')} />}
+      {/* Menu */}
+      <Menu />
+      {/* Rodapé */}
+      <Footer />
     </View> // Indicador de carregamento
   );
 }

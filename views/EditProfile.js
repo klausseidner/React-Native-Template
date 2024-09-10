@@ -10,6 +10,11 @@ import { View, TextInput, Button, Text, ActivityIndicator, Alert } from 'react-n
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
 
+// Importações de componentes
+import Header from '../components/Header'; // Importa o componente de cabeçalho
+import Menu from '../components/Menu'; // Importa o componente de menu
+import Footer from '../components/Footer'; // Importa o componente de rodapé
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de visualização para edição de perfil
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +74,8 @@ export default function EditProfile({ navigation }) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <View style={tailwind('p-4 bg-gray-100')}> {/* Estilização com Tailwind */}
+      {/* Cabeçalho */}
+      <Header />
       {loading && <ActivityIndicator size="large" color="#4F8EF7" style={tailwind('mb-4')} />} {/* Indicador de carregamento */}
       
       <Text style={tailwind('text-lg font-bold mb-2')}>Nome:</Text> {/* Título do campo */}
@@ -110,6 +117,10 @@ export default function EditProfile({ navigation }) {
         color="#4F8EF7" // Cor do botão
         disabled={loading} // Desabilita o botão se estiver carregando
       />
+      {/* Menu */}
+      <Menu />
+      {/* Rodapé */}
+      <Footer />
     </View> // Indicador de carregamento
   );
 }
