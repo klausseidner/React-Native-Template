@@ -112,12 +112,10 @@
 5. Instale as dependências:
     ```bash
     npm install
-    npm install helmet cors express express-rate-limit bcryptjs jsonwebtoken mysql2 express-validator dotenv secure-store 
-    npm install redis
-    npm install winston
-    npm install redis
-    npm install swagger-ui-express swagger-jsdoc
-    npm install react-native-vector-icons
+    
+    ou 
+
+    npm install helmet cors express express-rate-limit bcryptjs jsonwebtoken mysql2 express-validator dotenv secure-store redis winston redis swagger-ui-express swagger-jsdoc react-native-vector-icons
 
 6. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
     ```env
