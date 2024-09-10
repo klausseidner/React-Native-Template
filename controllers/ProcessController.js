@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const ProcessModel = require('../models/ProcessModel'); // Importa o modelo de processo
 const { validationResult, body } = require('express-validator'); // Importa express-validator para validar e sanitizar entradas
+const redisClient = require('../config/redis'); // Importa o cliente do Redis
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Controlador de processos
@@ -41,6 +42,9 @@ const ProcessController = {
 
       // Cria um novo processo no banco de dados
       ProcessModel.createProcess(newProcess, (result) => {
+        // Invalida o cache de listagem de processos após criar um novo processo
+        redisClient.del('processes:listAll');
+
         res.json({ message: 'Processo criado com sucesso!', result }); // Retorna uma mensagem de sucesso
       });
     }
@@ -55,9 +59,20 @@ const ProcessController = {
       return res.status(403).json({ message: 'Acesso negado' }); // Retorna um erro 403
     }
 
-    // Busca todos os processos no banco de dados
-    ProcessModel.findAll((results) => {
-      res.json(results); // Retorna os resultados como JSON
+    // Tenta obter os processos do cache Redis
+    redisClient.get('processes:listAll', (err, cachedProcesses) => {
+      if (cachedProcesses) {
+        // Se o cache existir, retorna os dados diretamente do Redis
+        return res.json(JSON.parse(cachedProcesses));
+      }
+
+      // Se não houver cache, busca todos os processos no banco de dados
+      ProcessModel.findAll((results) => {
+        // Armazena os resultados no cache com uma expiração de 1 hora
+        redisClient.set('processes:listAll', JSON.stringify(results), 'EX', 3600);
+
+        res.json(results); // Retorna os resultados como JSON
+      });
     });
   },
 
@@ -87,6 +102,9 @@ const ProcessController = {
       
       // Atualiza o status do processo
       ProcessModel.updateStatus(req.params.id, status, (result) => {
+        // Após atualizar o status, invalida o cache da lista de processos
+        redisClient.del('processes:listAll');
+
         res.json({ message: 'Status atualizado com sucesso!' }); // Retorna uma mensagem de sucesso
       });
     }

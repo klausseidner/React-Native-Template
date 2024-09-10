@@ -112,13 +112,25 @@
 5. Instale as dependências:
     ```bash
     npm install
+    npm install helmet cors express express-rate-limit bcryptjs jsonwebtoken mysql2 express-validator dotenv secure-store 
+    npm install redis
+    npm install winston
+    npm install redis
+    npm install swagger-ui-express swagger-jsdoc
 
 6. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
     ```env
+    # Configurações do JWT
     JWT_SECRET=seu-segredo-jwt
     JWT_EXPIRATION=1h
+
+    # Configurações do servidor
     PORT=5000
     CLIENT_URL=https://seu-dominio.com
+    
+    # Configurações do Redis
+    REDIS_HOST=localhost
+    REDIS_PORT=6379
 
     # Configurações do MySQL
     DB_HOST=localhost

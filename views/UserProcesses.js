@@ -28,12 +28,12 @@ export default function UserProcesses({ navigation }) {
   // Função para buscar os processos
 ////////////////////////////////////////////////////////////////////////////////////////////////////
   const fetchProcesses = async () => {
-    try {
+    try { // Tenta buscar os processos
       const response = await api.get('/user/processes'); // Busca os processos
       setProcesses(response.data); // Atualiza o estado de processos com os dados obtidos
-    } catch (error) {
+    } catch (error) { // Em caso de erro
       console.error('Erro ao buscar processos', error); // Exibe o erro no console
-    } finally {
+    } finally { // Após buscar os processos
       setLoading(false); // Desativa o indicador de carregamento
     }
   };

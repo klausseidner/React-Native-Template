@@ -13,7 +13,10 @@ const rateLimit = require('express-rate-limit'); // Importa o módulo express-ra
 const morgan = require('morgan'); // Adiciona Morgan para logs de requisições
 const authRoutes = require('./routes/authRoutes'); // Importa as rotas de autenticação
 const processRoutes = require('./routes/processRoutes'); // Importa as rotas de processos
+const helmet = require('helmet'); // Importa o módulo helmet
+const logger = require('./utils/logger'); // Importa o módulo logger
 
+app.use(helmet()); // Adiciona o middleware helmet
 dotenv.config(); // Carrega as variáveis de ambiente
 const app = express(); // Cria uma instância do express
 const PORT = process.env.PORT || 5000; // Define a porta do servidor
@@ -41,6 +44,7 @@ app.use('/api/process', processRoutes); // Rotas de processos
 
 app.use((err, req, res, next) => {
   console.error(err.stack); // Exibe o erro no console
+  logger.error(err.message); // Registra o erro no arquivo de log
   res.status(500).json({ message: 'Erro interno no servidor' }); // Retorna uma mensagem de erro
 });
 
