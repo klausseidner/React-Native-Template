@@ -8,7 +8,7 @@
 import React, { useState } from 'react'; // Importa o React e o useState
 import { View, Text, TouchableOpacity, Modal, FlatList } from 'react-native'; // Importa elementos nativos do React Native
 import tailwind from 'tailwind-rn'; // Importa Tailwind CSS para estilização
-import { Ionicons } from '@expo/vector-icons'; // Usando Ionicons como exemplo
+import { Ionicons } from 'react-native-vector-icons/Ionicons'; // Usando Ionicons como exemplo
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de Menu

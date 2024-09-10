@@ -117,6 +117,7 @@
     npm install winston
     npm install redis
     npm install swagger-ui-express swagger-jsdoc
+    npm install react-native-vector-icons
 
 6. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
     ```env

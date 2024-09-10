@@ -8,7 +8,7 @@
 import React from 'react'; // Importa o módulo React
 import { View, Text, TouchableOpacity, Linking } from 'react-native'; // Importa os módulos de View, Text, TouchableOpacity e Linking do React Native
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind-rn
-import { Ionicons } from '@expo/vector-icons'; // Usando Ionicons como exemplo
+import { Ionicons } from 'react-native-vector-icons/Ionicons'; // Usando Ionicons como exemplo
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Função de Rodapé
