@@ -6,12 +6,13 @@
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const winston = require('winston'); // Importa o módulo winston
+const dotenv = require('dotenv'); // Importa o módulo dotenv
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Configuração do logger
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const logger = winston.createLogger({
-  level: 'info', // Nível de log
+  level: dotenv.config().parsed.LOG_LEVEL || 'info', // Nível do log
   format: winston.format.json(), // Formato do log
   transports: [ // Transportes de log
     new winston.transports.File({ filename: 'error.log', level: 'error' }), // Arquivo de log de erros

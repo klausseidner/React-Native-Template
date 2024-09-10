@@ -8,6 +8,7 @@
 const bcrypt = require('bcrypt'); // Importa o módulo bcrypt
 const jwt = require('jsonwebtoken'); // Importa o módulo jsonwebtoken
 const { validationResult } = require('express-validator'); // Importa a função de validação de entrada
+const dotenv = require('dotenv'); // Importa o módulo dotenv
 const UserModel = require('../models/UserModel'); // Importa o modelo de usuário
 const { generateToken } = require('../utils/tokenUtils'); // Importa a função de geração de token
 
@@ -98,7 +99,11 @@ const AuthController = {
     }
 
     try { // Tenta executar o código
-      const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verifica o token
+      const decoded = jwt.verify(token, dotenv.config().parsed.JWT_SECRET); // Decodifica o token
+      // Verifica se o token expirou
+      if (decoded.exp < Date.now() / dotenv.config().parsed.JWT_EXPIRATION) {
+        return res.status(401).json({ message: 'Token expirado' }); // Retorna uma mensagem de erro
+      }
       req.user = decoded; // Adiciona o usuário decodificado ao objeto de requisição
       next(); // Chama o próximo middleware
     } catch (error) { // Se houver um erro, exibe o erro

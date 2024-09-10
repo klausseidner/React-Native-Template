@@ -19,11 +19,11 @@ const logger = require('./utils/logger'); // Importa o módulo logger
 app.use(helmet()); // Adiciona o middleware helmet
 dotenv.config(); // Carrega as variáveis de ambiente
 const app = express(); // Cria uma instância do express
-const PORT = process.env.PORT || 5000; // Define a porta do servidor
+const PORT = dotenv.config().parsed.PORT || 3000; // Porta do servidor
 
 // Configuração de CORS e Morgan para logs
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'https://seu-dominio.com', // URL do cliente
+  origin: dotenv.config().parsed.CLIENT_URL || 'http://localhost', // URL do cliente
   optionsSuccessStatus: 200, // Código de status de sucesso
 };
 app.use(cors(corsOptions)); // Habilita o CORS

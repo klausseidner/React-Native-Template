@@ -6,15 +6,16 @@
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const mysql = require('mysql2'); // Importa o módulo mysql2
+const dotenv = require('dotenv'); // Importa o módulo dotenv
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma conexão com o banco de dados MySQL
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const connection = mysql.createConnection({
-  host: 'localhost', // Endereço do banco de dados
-  user: 'root', // Usuário do banco de dados
-  password: 'password', // Senha do banco de dados
-  database: 'app_db' // Nome do banco de dados
+  host: dotenv.config().parsed.DB_HOST || 'localhost', // Endereço do banco de dados
+  user: dotenv.config().parsed.DB_USER || 'root', // Usuário do banco de dados
+  password: dotenv.config().parsed.DB_PASSWORD || 'password', // Senha do banco de dados
+  database: dotenv.config().parsed.DB_NAME || 'database', // Nome do banco de dados
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
