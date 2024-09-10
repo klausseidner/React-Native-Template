@@ -17,7 +17,6 @@ const helmet = require('helmet'); // Importa o módulo helmet
 const logger = require('./utils/logger'); // Importa o módulo logger
 
 app.use(helmet()); // Adiciona o middleware helmet
-dotenv.config(); // Carrega as variáveis de ambiente
 const app = express(); // Cria uma instância do express
 const PORT = env.PORT || 3000; // Porta do servidor
 
