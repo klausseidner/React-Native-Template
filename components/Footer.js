@@ -45,7 +45,7 @@ const Footer = () => { // Função de Rodapé
       {/* Direitos Autorais */}
       <View style={tailwind('mt-4')}> {/* Estilo de margem superior de 4 */}
         <Text style={tailwind('text-white text-center text-sm')}> {/* Texto branco, centralizado e de tamanho pequeno */}
-          © {new Date().getFullYear()} Sua Empresa. Todos os direitos reservados. {/* Texto de direitos autorais */}
+          © {new Date().getFullYear()} Klaus Seidner. Sobe o MIT License. {/* Texto de direitos autorais */}
         </Text> {/* Fim do texto */}
       </View> {/* Fim do estilo de margem superior */}
     </View> // Fim da visualização
