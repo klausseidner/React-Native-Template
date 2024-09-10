@@ -8,7 +8,7 @@
 const bcrypt = require('bcrypt'); // Importa o módulo bcrypt
 const jwt = require('jsonwebtoken'); // Importa o módulo jsonwebtoken
 const { validationResult } = require('express-validator'); // Importa a função de validação de entrada
-import Config from "react-native-config"; // Importa o módulo react-native-config
+const env = require('react-native-config'); // Importa o módulo react-native-config
 const UserModel = require('../models/UserModel'); // Importa o modelo de usuário
 const { generateToken } = require('../utils/tokenUtils'); // Importa a função de geração de token
 
@@ -99,9 +99,9 @@ const AuthController = {
     }
 
     try { // Tenta executar o código
-      const decoded = jwt.verify(token, Config.JWT_SECRET); // Decodifica o token
+      const decoded = jwt.verify(token, env.JWT_SECRET); // Decodifica o token
       // Verifica se o token expirou
-      if (decoded.exp < Date.now() / Config.JWT_EXPIRATION) {
+      if (decoded.exp < Date.now() / env.JWT_EXPIRATION) {
         return res.status(401).json({ message: 'Token expirado' }); // Retorna uma mensagem de erro
       }
       req.user = decoded; // Adiciona o usuário decodificado ao objeto de requisição

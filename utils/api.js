@@ -7,13 +7,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import axios from 'axios'; // Para realizar requisições HTTP
 import * as SecureStore from 'expo-secure-store'; // Para armazenar o token de maneira segura
-import Config from "react-native-config"; // Importa o módulo react-native-config
+const env = require('react-native-config'); // Importa o módulo react-native-config
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma instância da API com a URL base
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const api = axios.create({
-  baseURL: Config.CLIENT_API_URL + ':' + Config.CLIENT_API_PORT || 'http://localhost:3000', // URL base da API
+  baseURL: env.CLIENT_API_URL + ':' + env.CLIENT_API_PORT || 'http://localhost:3000', // URL base da API
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ api.interceptors.request.use(
     const token = await SecureStore.getItemAsync('token');  // Obtém o token armazenado de forma segura
     // Adiciona o token ao cabeçalho da requisição, se estiver disponível
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`; // Adiciona o token ao cabeçalho
+      env.headers.Authorization = `Bearer ${token}`; // Adiciona o token ao cabeçalho
     }
     return config; // Retorna a configuração da requisição
   },

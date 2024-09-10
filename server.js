@@ -8,7 +8,7 @@
 const express = require('express'); // Importa o módulo express
 const cors = require('cors'); // Importa o módulo cors
 const bodyParser = require('body-parser'); // Importa o módulo body-parser
-import Config from "react-native-config"; // Importa o módulo react-native-config
+const env = require('react-native-config'); // Importa o módulo react-native-config
 const rateLimit = require('express-rate-limit'); // Importa o módulo express-rate-limit
 const morgan = require('morgan'); // Adiciona Morgan para logs de requisições
 const authRoutes = require('./routes/authRoutes'); // Importa as rotas de autenticação
@@ -19,11 +19,11 @@ const logger = require('./utils/logger'); // Importa o módulo logger
 app.use(helmet()); // Adiciona o middleware helmet
 dotenv.config(); // Carrega as variáveis de ambiente
 const app = express(); // Cria uma instância do express
-const PORT = Config.PORT || 3000; // Porta do servidor
+const PORT = env.PORT || 3000; // Porta do servidor
 
 // Configuração de CORS e Morgan para logs
 const corsOptions = {
-  origin: Config.CLIENT_URL || 'http://localhost:19006', // URL do cliente
+  origin: env.CLIENT_URL || 'http://localhost:19006', // URL do cliente
   optionsSuccessStatus: 200, // Código de status de sucesso
 };
 app.use(cors(corsOptions)); // Habilita o CORS

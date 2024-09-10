@@ -6,13 +6,13 @@
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const jwt = require('jsonwebtoken'); // Importa o módulo jsonwebtoken
-import Config from "react-native-config"; // Importa o módulo react-native-config
+const env = require('react-native-config'); // Importa o módulo react-native-config
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Função para gerar um token JWT
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 function generateToken(user) {
-  return jwt.sign({ id: user.id, role: user.role }, Config.JWT_SECRET, { // Gera um token com o ID e a função do usuário
+  return jwt.sign({ id: user.id, role: user.role }, env.JWT_SECRET, { // Gera um token com o ID e a função do usuário
     expiresIn: process.env.JWT_EXPIRATION || '3600', // Define o tempo de expiração do token
   });
 }

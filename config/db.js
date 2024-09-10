@@ -6,16 +6,16 @@
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const mysql = require('mysql2'); // Importa o módulo mysql2
-import Config from "react-native-config"; // Importa o módulo react-native-config
+const env = require('react-native-config'); // Importa o módulo react-native-config
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma conexão com o banco de dados MySQL
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const connection = mysql.createConnection({
-  host: Config.DB_HOST || 'localhost', // Endereço do banco de dados
-  user: Config.DB_USER || 'root', // Usuário do banco de dados
-  password: Config.DB_PASSWORD || '', // Senha do banco de dados
-  database: Config.DB_NAME || 'database', // Nome do banco de dados
+  host: env.DB_HOST || 'localhost', // Endereço do banco de dados
+  user: env.DB_USER || 'root', // Usuário do banco de dados
+  password: env.DB_PASSWORD || '', // Senha do banco de dados
+  database: env.DB_NAME || 'database', // Nome do banco de dados
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
