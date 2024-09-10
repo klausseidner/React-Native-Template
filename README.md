@@ -8,7 +8,7 @@
 </p>
 <p align="center">
     <h3 align="center">
-        ❯ Este projeto é um aplicativo de gerenciamento de processos desenvolvido utilizando <strong>React Native</strong> com <strong>Tailwind CSS</strong> no frontend e <strong>Node.js</strong> (Express) no backend. A autenticação é baseada em <strong>JSON Web Token</strong> (JWT), e o banco de dados utilizado é o <strong>MySQL</strong>. O objetivo é fornecer uma plataforma robusta para gerenciar processos de forma eficiente, com segurança garantida através de tokens JWT.
+        ❯ Este projeto é um aplicativo de gerenciamento de processos desenvolvido utilizando <strong>React Native</strong> com <strong>Tailwind CSS</strong> no frontend e <strong>Node.js</strong> (Express) no backend. A autenticação é baseada em <strong>JSON Web Token</strong> (JWT), e o banco de dados utilizado é o <strong>MySQL</strong>. O objetivo é fornecer uma plataforma robusta para gerenciar processos de forma eficiente, com segurança garantida através de tokens JWT dentre outras medidas de segurança. ❮
     </h3>
 </p>
 <br>
