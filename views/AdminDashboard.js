@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react'; // Importa o módulo react e
 import { View, Text, Button, Picker, ActivityIndicator, Alert } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
+const logger = require('./utils/logger'); // Importa o módulo logger
 
 // Importações de componentes
 import Header from '../components/Header'; // Importa o componente de cabeçalho
@@ -55,8 +56,10 @@ export default function AdminDashboard() {
       await api.put(`/process/${processId}/status`, { status }); // Atualiza o status
       fetchProcesses(); // Busca os processos
       Alert.alert('Sucesso', 'Status atualizado com sucesso'); // Mensagem de sucesso
+      logger.info('Status atualizado com sucesso'); // Exibe a mensagem de sucesso no console
     } catch (error) { // Se houver erro
       Alert.alert('Erro', 'Erro ao atualizar o status'); // Mensagem de erro
+      logger.error(`Erro ao atualizar status: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally { // Finalmente
       setUpdating(false); // Desativa o indicador de atualização
     }

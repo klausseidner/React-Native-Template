@@ -11,6 +11,7 @@ const { validationResult } = require('express-validator'); // Importa a função
 const env = require('react-native-config'); // Importa o módulo react-native-config
 const UserModel = require('../models/UserModel'); // Importa o modelo de usuário
 const { generateToken } = require('../utils/tokenUtils'); // Importa a função de geração de token
+const logger = require('./utils/logger'); // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Função de registro de usuário
@@ -42,7 +43,7 @@ const AuthController = {
       return res.json({ token, user: { id: newUser.id, email: newUser.email, name: newUser.name } }); // Retorna o token e os dados do usuário
 
     } catch (error) { // Se houver um erro, exibe o erro
-      console.error("Erro ao registrar usuário:", error); // Exibe o erro
+      logger.error(`Erro ao registrar usuário: ${error.message}`, { stack: error.stack }); // Exibe o erro
       return res.status(500).json({ message: 'Erro ao registrar usuário' }); // Retorna uma mensagem de erro
     }
   },
@@ -75,7 +76,7 @@ const AuthController = {
       return res.json({ token, user: { id: user.id, email: user.email, name: user.name } }); // Retorna o token e os dados do usuário
 
     } catch (error) { // Se houver um erro, exibe o erro
-      console.error("Erro ao fazer login:", error); // Exibe o erro
+      logger.error(`Erro ao fazer login: ${error.message}`, { stack: error.stack }); // Exibe o erro
       return res.status(500).json({ message: 'Erro ao fazer login' }); // Retorna uma mensagem de erro
     }
   },

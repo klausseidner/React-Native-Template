@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const redis = require('redis'); // Importa o módulo redis
 const env = require('react-native-config'); // Importa o módulo react-native-config
+const logger = require('./utils/logger'); // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria um cliente do Redis
@@ -20,14 +21,14 @@ const client = redis.createClient({
 // Evento de erro de conexão com o Redis
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 client.on('error', (err) => {
-  console.error('Erro na conexão com o Redis:', err); // Exibe o erro no console
+  logger.error(`Erro na conexão com o Redis: ${err.message}`, { stack: err.stack }); // Exibe o erro no console
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Conectar ao Redis
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 client.connect().then(() => {
-  console.log('Conectado ao Redis com sucesso'); // Exibe a mensagem de conexão bem-sucedida
+  logger.info('Conectado ao servidor Redis'); // Exibe a mensagem de conexão bem-sucedida
 });
 
 module.exports = client; // Exporta o cliente do Redis

@@ -15,6 +15,7 @@ import { NavigationContainer } from '@react-navigation/native';  // Importa o m�
 import { createStackNavigator } from '@react-navigation/stack';  // Importa o módulo de navegação em pilha
 import tailwind from 'tailwind-rn';  // Importa Tailwind CSS para estilização
 import { AuthProvider } from './context/AuthContext'; // Importa o contexto de autenticação
+const logger = require('./utils/logger'); // Importa o logger configurado
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações das telas do aplicativo
@@ -41,7 +42,7 @@ export default function App() {
       navigation.navigate(navigateTo);  // Tenta navegar para a tela solicitada
     } catch (error) {
       setError('Erro ao navegar. Tente novamente mais tarde.');  // Define o estado de erro
-      console.error(error);  // Loga o erro no console
+      logger.error(error);  // Loga o erro no console
     }
   };
 

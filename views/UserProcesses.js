@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react'; // Importa o módulo react
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
+const logger = require('./utils/logger'); // Importa o módulo logger
 
 // Importações de componentes
 import Header from '../components/Header'; // Importa o componente de cabeçalho
@@ -37,7 +38,7 @@ export default function UserProcesses({ navigation }) {
       const response = await api.get('/user/processes'); // Busca os processos
       setProcesses(response.data); // Atualiza o estado de processos com os dados obtidos
     } catch (error) { // Em caso de erro
-      console.error('Erro ao buscar processos', error); // Exibe o erro no console
+      logger.error(`Erro ao buscar processos: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally { // Após buscar os processos
       setLoading(false); // Desativa o indicador de carregamento
     }

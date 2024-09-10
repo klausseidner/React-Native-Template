@@ -42,13 +42,12 @@ app.use('/api/auth', authRoutes); // Rotas de autenticação
 app.use('/api/process', processRoutes); // Rotas de processos
 
 app.use((err, req, res, next) => {
-  console.error(err.stack); // Exibe o erro no console
-  logger.error(err.message); // Registra o erro no arquivo de log
+  logger.error(`Erro capturado: ${err.message}`, {stack: err.stack}); // Registra o erro no arquivo de log
   res.status(500).json({ message: 'Erro interno no servidor' }); // Retorna uma mensagem de erro
 });
 
 app.listen(PORT, () => { // Inicia o servidor
-  console.log(`Servidor rodando na porta ${PORT}`); // Exibe a mensagem de servidor rodando
+  logger.info(`Servidor rodando na porta ${PORT}`); // Registra a mensagem de servidor rodando
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

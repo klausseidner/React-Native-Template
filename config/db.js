@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const mysql = require('mysql2'); // Importa o módulo mysql2
 const env = require('react-native-config'); // Importa o módulo react-native-config
+const logger = require('./utils/logger'); // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma conexão com o banco de dados MySQL
@@ -23,7 +24,7 @@ const connection = mysql.createConnection({
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 connection.connect((err) => { // Callback de conexão
   if (err) throw err; // Se houver erro, exibe o erro
-  console.log('Conectado ao MySQL!'); // Se não houver erro, exibe a mensagem de conexão bem-sucedida
+  logger.error(`Erro ao conectar ao banco de dados: ${err.message}`, { stack: err.stack }); // Exibe o erro
 });
 
 module.exports = connection; // Exporta a conexão com o banco de dados

@@ -10,6 +10,7 @@ const ProcessController = require('../controllers/ProcessController'); // Import
 const authenticateUser = require('../middleware/authMiddleware'); // Importa o middleware de autenticação
 const router = express.Router(); // Cria um objeto de roteamento
 const redisClient = require('../config/redis'); // Importa o cliente do Redis
+const logger = require('../utils/logger'); // Importa o módulo de log
 
 // Middleware para verificar cache
 const checkCache = async (req, res, next) => {
@@ -24,7 +25,7 @@ const checkCache = async (req, res, next) => {
         next(); // Chama a próxima função
       }
     } catch (error) { // Se houver um erro, exibe o erro no console e chama a próxima função
-      console.error('Erro ao verificar cache no Redis:', error); // Exibe o erro no console
+      logger.error(`Erro ao obter processo do cache: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
       next(); // Chama a próxima função
     }
 };

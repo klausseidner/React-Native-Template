@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react'; // Importa o módulo react
 import { View, TextInput, Button, Text, ActivityIndicator, Alert } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
+const logger = require('./utils/logger'); // Importa o módulo logger
 
 // Importações de componentes
 import Header from '../components/Header'; // Importa o componente de cabeçalho
@@ -45,8 +46,9 @@ export default function EditProfile({ navigation }) {
       setEmail(email); // Atualiza o estado de email
       setRg(rg); // Apenas exibido, não editável
       setCpf(cpf); // Apenas exibido, não editável
+      logger.info('Perfil carregado com sucesso!'); // Exibe a mensagem de sucesso no console
     } catch (error) { // Se houver erro
-      console.error('Erro ao buscar o perfil', error); // Exibe o erro no console
+      logger.error(`Erro ao buscar o perfil: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally { // Finaliza
       setLoading(false); // Desativa o indicador de carregamento
     }
@@ -60,10 +62,11 @@ export default function EditProfile({ navigation }) {
       setLoading(true); // Ativa o indicador de carregamento
       await api.put('/user/profile', { name, email }); // Atualiza o perfil
       Alert.alert('Sucesso', 'Perfil atualizado com sucesso!'); // Mensagem de sucesso
+      logger.info('Perfil atualizado com sucesso!'); // Exibe a mensagem de sucesso no console
       navigation.goBack(); // Volta à página anterior após salvar
     } catch (error) { // Se houver erro
       setMessage('Erro ao atualizar o perfil.'); // Exibe uma mensagem de erro
-      console.error('Erro ao atualizar o perfil', error); // Exibe o erro no console
+      logger.error(`Erro ao atualizar o perfil: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally { // Finaliza
       setLoading(false); // Desativa o indicador de carregamento
     }

@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react'; // Importa o módulo react
 import { View, TextInput, Button, Text, Picker, ActivityIndicator, Alert } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
+const logger = require('./utils/logger'); // Importa o módulo logger
 
 // Importações de componentes
 import Header from '../components/Header'; // Importa o componente de cabeçalho
@@ -46,7 +47,7 @@ export default function EditProcess({ route, navigation }) {
       setOption(option.toString()); // Atualiza o estado de opção
     } catch (error) { // Se houver erro
       setMessage('Erro ao carregar o processo.'); // Exibe uma mensagem de erro
-      console.error('Erro ao carregar processo', error); // Exibe o erro no console
+      logger.error(`Erro ao carregar processo: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally {
       setLoading(false); // Desativa o indicador de carregamento
     }
@@ -60,10 +61,11 @@ export default function EditProcess({ route, navigation }) {
       setLoading(true); // Ativa o indicador de carregamento
       await api.put(`/process/${processId}`, { title, description, option }); // Atualiza o processo
       Alert.alert('Sucesso', 'Processo atualizado com sucesso!'); // Mensagem de sucesso
+      logger.info('Processo atualizado com sucesso!'); // Exibe a mensagem de sucesso no console
       navigation.goBack(); // Retorna à tela anterior
     } catch (error) { // Se houver erro
       setMessage('Erro ao atualizar o processo.'); // Exibe uma mensagem de erro
-      console.error('Erro ao atualizar processo', error); // Exibe o erro no console
+      logger.error(`Erro ao atualizar processo: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally {
       setLoading(false); // Desativa o indicador de carregamento
     }

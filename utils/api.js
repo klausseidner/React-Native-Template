@@ -8,6 +8,7 @@
 import axios from 'axios'; // Para realizar requisições HTTP
 import * as SecureStore from 'expo-secure-store'; // Para armazenar o token de maneira segura
 const env = require('react-native-config'); // Importa o módulo react-native-config
+const logger = require('./utils/logger'); // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma instância da API com a URL base
@@ -60,7 +61,7 @@ export const saveToken = async (token) => {
   try { // Tenta salvar o token
     await SecureStore.setItemAsync('token', token); // Salva o token de forma segura
   } catch (error) { // Tratamento de erros
-    console.error('Erro ao salvar o token', error); // Exibe um erro no console
+    logger.error(`Erro ao salvar o token: ${error.message}`, { stack: error.stack }); // Registra um erro no arquivo de log
   }
 };
 
@@ -71,7 +72,7 @@ export const removeToken = async () => {
   try { // Tenta remover o token
     await SecureStore.deleteItemAsync('token'); // Remove o token de forma segura
   } catch (error) { // Tratamento de erros
-    console.error('Erro ao remover o token', error); // Exibe um erro no console
+    logger.error(`Erro ao remover o token: ${error.message}`, { stack: error.stack }); // Registra um erro no arquivo de log
   }
 };
 
