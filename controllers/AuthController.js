@@ -8,7 +8,7 @@
 const bcrypt = require('bcrypt'); // Importa o módulo bcrypt
 const jwt = require('jsonwebtoken'); // Importa o módulo jsonwebtoken
 const { validationResult } = require('express-validator'); // Importa a função de validação de entrada
-const dotenv = require('dotenv'); // Importa o módulo dotenv
+const dotenv = require('react-native-dotenv'); // Importa o módulo dotenv
 const UserModel = require('../models/UserModel'); // Importa o modelo de usuário
 const { generateToken } = require('../utils/tokenUtils'); // Importa a função de geração de token
 

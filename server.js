@@ -8,7 +8,7 @@
 const express = require('express'); // Importa o módulo express
 const cors = require('cors'); // Importa o módulo cors
 const bodyParser = require('body-parser'); // Importa o módulo body-parser
-const dotenv = require('dotenv'); // Importa o módulo dotenv
+const dotenv = require('react-native-dotenv'); // Importa o módulo dotenv
 const rateLimit = require('express-rate-limit'); // Importa o módulo express-rate-limit
 const morgan = require('morgan'); // Adiciona Morgan para logs de requisições
 const authRoutes = require('./routes/authRoutes'); // Importa as rotas de autenticação

@@ -7,7 +7,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import axios from 'axios'; // Para realizar requisições HTTP
 import * as SecureStore from 'expo-secure-store'; // Para armazenar o token de maneira segura
-const dotenv = require('dotenv'); // Importa o módulo dotenv
+const dotenv = require('react-native-dotenv'); // Importa o módulo dotenv
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma instância da API com a URL base
