@@ -29,6 +29,7 @@
 <br>
 
 ## 🧩 Tecnologias Utilizadas
+
 - **Frontend**: React Native, Tailwind CSS
 - **Backend**: Node.js (Express)
 - **Banco de Dados**: MySQL
