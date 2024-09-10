@@ -11,6 +11,7 @@ import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
 import api from '../utils/api'; // Importa a instância da API
 import * as SecureStore from 'expo-secure-store'; // Importa o SecureStore para armazenamento seguro
 import { useAuth } from '../context/AuthContext'; // Importe o contexto de autenticação
+const logger = require('../utils/logger'); // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Componente de visualização para login

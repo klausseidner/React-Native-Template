@@ -55,6 +55,13 @@ class ProcessModel {
       }
     );
   }
+  static findProcessById(id, callback) {
+    // Busca um processo pelo ID
+    db.query('SELECT * FROM processes WHERE id = ?', id, (err, results) => { // Query SQL para buscar um processo pelo ID
+      if (err) return callback(err); // Passa o erro para o callback em vez de usar throw
+      callback(null, results[0]); // Se não houver erro, chama a função de retorno com o primeiro resultado
+    });
+  }
 }
 
 module.exports = ProcessModel; // Exporta a classe de modelo de processo

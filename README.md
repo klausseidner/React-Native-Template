@@ -42,8 +42,13 @@
 ```sh
 └── React-Native-Template/ # Raiz do projeto
     ├── App.js # Arquivo principal do aplicativo
+    ├── db.sql # Script SQL para criação do banco de dados
     ├── LICENSE # Licença do projeto
+    ├── logo.png # Logo do projeto
+    ├── package.json # Arquivo de configuração do npm
+    ├── project.txt # Informações do projeto
     ├── README.md # Documentação do projeto
+    ├── server.js # Arquivo principal do servidor
     ├── components # Componentes do aplicativo
     │   ├── Button.js # Botão customizado
     │   ├── Carrossel.js # Carrossel de imagens
@@ -55,35 +60,38 @@
     │   ├── Modal.js # Modal
     │   └── Table.js # Tabela
     ├── config # Configurações do aplicativo
-    │   └── db.js # Configuração do banco de dados
+    │   ├── db.js # Configuração do banco de dados
+    │   └── redis.js # Configuração do Redis
     ├── context # Contextos do aplicativo
     │   └── AuthContext.js # Contexto de autenticação
     ├── controllers # Controladores do aplicativo
     │   ├── AuthController.js # Controlador de autenticação
     │   └── ProcessController.js # Controlador de processos
-    ├── db.sql # Script SQL para criação do banco de dados
+    ├── logs # Logs do aplicativo
+    │   ├── error.log # Log de erros
+    │   └── combined.log # Log de atividades
     ├── middleware # Middlewares do aplicativo
     │   └── authMiddleware.js # Middleware de autenticação
     ├── models # Modelos do aplicativo
     │   ├── ProcessModel.js # Modelo de processos
     │   └── UserModel.js # Modelo de usuários
-    ├── package.json # Arquivo de configuração do npm
-    ├── project.txt # Informações do projeto
     ├── routes # Rotas do aplicativo
     │   ├── authRoutes.js # Rotas de autenticação
     │   └── processRoutes.js # Rotas de processos
-    ├── server.js # Arquivo principal do servidor
     ├── utils # Utilitários do aplicativo
     │   ├── api.js # Funções de requisição
+    │   ├── logger.js # Funções de log
     │   └── tokenUtils.js # Funções de token
     └── views # Telas do aplicativo
         ├── AdminDashboard.js # Painel de controle do administrador
         ├── AdminEditProcess.js # Edição de processos pelo administrador
         ├── CreateProcess.js # Criação de processos
         ├── CreateUser.js # Criação de usuários
+        ├── DetailsProcess.js # Detalhes de processos
         ├── EditProcess.js # Edição de processos
         ├── EditProfile.js # Edição de perfil
         ├── Login.js # Tela de login
+        ├── Profile.js # Perfil do usuário
         └── UserProcesses.js # Processos do usuário
 ```
 

@@ -7,7 +7,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import React, { useState } from 'react'; // Importa o React e o useState
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native'; // Importa View, Text, TextInput, Button e StyleSheet
-import { createUser } from ''; // Importa a função createUser do arquivo UserService
+import api from '../utils/api'; // Importa a instância da API
+const logger = require('../utils/logger'); // Importa o módulo logger
 
 // Importações de componentes
 import Header from '../components/Header'; // Importa o componente de cabeçalho

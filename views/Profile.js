@@ -8,6 +8,8 @@
 import React from 'react'; // Importa o módulo react
 import { View, Text, Image, TouchableOpacity } from 'react-native'; // Importa os componentes de interface
 import tailwind from 'tailwind-rn'; // Importa o módulo tailwind
+import api from '../utils/api'; // Importa a instância da API
+const logger = require('../utils/logger'); // Importa o módulo logger
 import Header from './Header'; // Importa o componente de cabeçalho
 import Menu from './Menu'; // Importa o componente de menu
 import Footer from './Footer'; // Importa o componente de rodapé
