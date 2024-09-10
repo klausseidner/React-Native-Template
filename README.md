@@ -112,9 +112,9 @@
 5. Instale as dependências:
     ```bash
     npm install
-    
-    ou 
-
+    ```
+    ou, se você preferir:
+    ```bash
     npm install helmet cors express express-rate-limit bcryptjs jsonwebtoken mysql2 express-validator dotenv secure-store redis winston redis swagger-ui-express swagger-jsdoc react-native-vector-icons
 
 6. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
