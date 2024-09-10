@@ -6,13 +6,13 @@
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const winston = require('winston'); // Importa o módulo winston
-const dotenv = require('react-native-dotenv'); // Importa o módulo dotenv
+import Config from "react-native-config"; // Importa o módulo react-native-config
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Configuração do logger
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const logger = winston.createLogger({
-  level: dotenv.config().parsed.LOG_LEVEL || 'info', // Nível do log
+  level: Config.LOG_LEVEL || 'info', // Nível de log
   format: winston.format.json(), // Formato do log
   transports: [ // Transportes de log
     new winston.transports.File({ filename: 'error.log', level: 'error' }), // Arquivo de log de erros
@@ -21,7 +21,7 @@ const logger = winston.createLogger({
 });
 
 // Se não estiver em produção, adicione o transporte de console
-if (process.env.NODE_ENV !== 'production') {
+if (Config.NODE_ENV !== 'production') {
   logger.add(new winston.transports.Console({ // Adiciona o transporte de console
     format: winston.format.simple(), // Formato simples
   }));

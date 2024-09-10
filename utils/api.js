@@ -7,13 +7,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import axios from 'axios'; // Para realizar requisições HTTP
 import * as SecureStore from 'expo-secure-store'; // Para armazenar o token de maneira segura
-const dotenv = require('react-native-dotenv'); // Importa o módulo dotenv
+import Config from "react-native-config"; // Importa o módulo react-native-config
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma instância da API com a URL base
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const api = axios.create({
-  baseURL: dotenv.config().parsed.API_URL + ':' + dotenv.config().parsed.API_PORT || 'http://localhost:3000', // URL base da API
+  baseURL: Config.CLIENT_API_URL + ':' + Config.CLIENT_API_PORT || 'http://localhost:3000', // URL base da API
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -6,16 +6,16 @@
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const mysql = require('mysql2'); // Importa o módulo mysql2
-const dotenv = require('react-native-dotenv'); // Importa o módulo dotenv
+import Config from "react-native-config"; // Importa o módulo react-native-config
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma conexão com o banco de dados MySQL
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const connection = mysql.createConnection({
-  host: dotenv.config().parsed.DB_HOST || 'localhost', // Endereço do banco de dados
-  user: dotenv.config().parsed.DB_USER || 'root', // Usuário do banco de dados
-  password: dotenv.config().parsed.DB_PASSWORD || 'password', // Senha do banco de dados
-  database: dotenv.config().parsed.DB_NAME || 'database', // Nome do banco de dados
+  host: Config.DB_HOST || 'localhost', // Endereço do banco de dados
+  user: Config.DB_USER || 'root', // Usuário do banco de dados
+  password: Config.DB_PASSWORD || '', // Senha do banco de dados
+  database: Config.DB_NAME || 'database', // Nome do banco de dados
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
