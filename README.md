@@ -119,8 +119,7 @@
     sudo apt-get install -y nodejs
     ```
 
- Instalar o **Node.js** e o **NPM** (**🟦 Windows**):
- 
+    Instalar o **Node.js** e o **NPM** (**🟦 Windows**):
     - Acesse o site oficial do [Node.js](https://nodejs.org/en/download/) e baixe o instalador.
     - Execute o instalador e siga as instruções.
 
