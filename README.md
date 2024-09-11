@@ -141,8 +141,7 @@
     ```
 
 4. Instalar o **React Native CLI**:
-    ```
-    bash
+    ```bash
     npm install -g react-native-cli
     ```
 
