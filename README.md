@@ -107,7 +107,7 @@
 
 ### 📦 Configurações
 
-**Linux (Ubuntu)**
+**🐧 Linux (Ubuntu)**
 
 1. Instalar o **Node.js** e o **NPM**:
    ```bash
