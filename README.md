@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/klausseidner/React-Native-Template/blob/main/logo.png" width="50%" alt="REACT-NATIVE-TEMPLATE-logo">
+  <img src="https://github.com/klausseidner/React-Native-Template/blob/main/logo.png" width="30%" alt="REACT-NATIVE-TEMPLATE-logo">
 </p>
 <p align="center">
     <h1 align="center">
