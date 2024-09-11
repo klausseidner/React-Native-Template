@@ -107,7 +107,7 @@
 
 ### 📦 Configurações
 
-1. Instalar o **Node.js** e o **NPM** (**🐧 Linux (Ubuntu)**): 
+1. Instalar o **Node.js** e o **NPM** (**🐧 Ubuntu**): 
    ```bash
     sudo apt update
     sudo apt install nodejs
@@ -123,7 +123,7 @@
     - Acesse o site oficial do [Node.js](https://nodejs.org/en/download/) e baixe o instalador.
     - Execute o instalador e siga as instruções.
 
-2. Instalar o **MySQL** (**🐧 Linux (Ubuntu)**):
+2. Instalar o **MySQL** (**🐧 Ubuntu**):
     ```bash	
     sudo apt update
     sudo apt install mysql-server
@@ -139,7 +139,7 @@
     - Acesse o site oficial do [MySQL](https://dev.mysql.com/downloads/installer/) e baixe o instalador.
     - Execute o instalador e siga as instruções.
 
-3. Instalar o **Git** (**🐧 Linux (Ubuntu)**):
+3. Instalar o **Git** (**🐧 Ubuntu**):
     ```bash
     sudo apt update
     sudo apt install git
