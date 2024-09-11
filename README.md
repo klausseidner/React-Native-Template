@@ -107,9 +107,7 @@
 
 ### 📦 Configurações
 
-**🐧 Linux (Ubuntu)**
-
-1. Instalar o **Node.js** e o **NPM**:
+1. Instalar o **Node.js** e o **NPM** (**🐧 Linux (Ubuntu)**): 
    ```bash
     sudo apt update
     sudo apt install nodejs
@@ -121,7 +119,11 @@
     sudo apt-get install -y nodejs
     ```
 
-2. Instalar o **MySQL**:
+ Instalar o **Node.js** e o **NPM** (**🟦 Windows**):
+    - Acesse o site oficial do [Node.js](https://nodejs.org/en/download/) e baixe o instalador.
+    - Execute o instalador e siga as instruções.
+
+2. Instalar o **MySQL** (**🐧 Linux (Ubuntu)**):
     ```bash	
     sudo apt update
     sudo apt install mysql-server
@@ -133,12 +135,18 @@
     sudo apt install mariadb-server
     sudo mysql_secure_installation
     ```
-    
-3. Instalar o **Git**:
+    Instalar o **MySQL** (**🟦 Windows**):
+    - Acesse o site oficial do [MySQL](https://dev.mysql.com/downloads/installer/) e baixe o instalador.
+    - Execute o instalador e siga as instruções.
+
+3. Instalar o **Git** (**🐧 Linux (Ubuntu)**):
     ```bash
     sudo apt update
     sudo apt install git
     ```
+    Instalar o **Git** (**🟦 Windows**):
+    - Acesse o site oficial do [Git](https://git-scm.com/downloads) e baixe o instalador.
+    - Execute o instalador e siga as instruções.
 
 4. Instalar o **React Native CLI**:
     ```bash
