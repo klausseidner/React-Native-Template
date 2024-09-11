@@ -32,3 +32,28 @@ views/UserProcesses.js: Processos do usuário.
 Utils:
 utils/tokenUtils.js: Funções de manipulação de tokens.
 utils/api.js: Funções de requisição à API.
+
+Blibliotecas utilizadas:
+
+
+- react 
+- react-native
+- react-native-config
+- react-native-snap-carousel 
+- react-native-chart-kit 
+- react-native-vector-icons/Ionicons
+- tailwind-rn
+- express
+- express-validator
+- express-rate-limit
+- expo-secure-store
+- cors 
+- body-parser
+- morgan
+- helmet
+- mysql2
+- redis
+- bcrypt
+- jsonwebtoken
+- axios
+- winston

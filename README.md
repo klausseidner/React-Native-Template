@@ -84,6 +84,7 @@
     │   └── tokenUtils.js # Funções de token
     └── views # Telas do aplicativo
         ├── AdminDashboard.js # Painel de controle do administrador
+        ├── Dashboard.js # Painel de controle do usuário
         ├── AdminEditProcess.js # Edição de processos pelo administrador
         ├── CreateProcess.js # Criação de processos
         ├── CreateUser.js # Criação de usuários
@@ -105,28 +106,71 @@
 - **Git** para clonar o repositório
 
 ### 📦 Configurações
-1. Instalar o **Node.js**:
-   - [Node.js](https://nodejs.org/)
 
-2. Instalar o **MySQL**:
-    - [MySQL](https://www.mysql.com/)
-    
-3. Instalar o **Git**:
-    - [Git](https://git-scm.com/)
+**Linux (Ubuntu)**
 
-4. Clone o repositório e navegue até a pasta do backend:
+1. Instalar o **Node.js** e o **NPM**:
    ```bash
-   git clone https://github.com/klausseidner/React-Native-Template.git
-
-5. Instale as dependências:
-    ```bash
-    npm install
+    sudo apt update
+    sudo apt install nodejs
+    sudo apt install npm
     ```
     ou, se você preferir:
     ```bash
-    npm install helmet cors express express-rate-limit bcryptjs jsonwebtoken mysql2 express-validator dotenv secure-store redis winston redis swagger-ui-express swagger-jsdoc react-native-vector-icons
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+    ```
 
-6. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
+2. Instalar o **MySQL**:
+    ```bash	
+    sudo apt update
+    sudo apt install mysql-server
+    sudo mysql_secure_installation
+    ```
+    ou, se você preferir:
+    ```bash
+    sudo apt update
+    sudo apt install mariadb-server
+    sudo mysql_secure_installation
+    ```
+    
+3. Instalar o **Git**:
+    ```bash
+    sudo apt update
+    sudo apt install git
+    ```
+
+4. Instalar o **React Native CLI**:
+    ```
+    bash
+    npm install -g react-native-cli
+    ```
+
+5. Criação de um novo projeto:
+    ```bash
+    npx react-native init MeuApp
+    ```
+
+6. Navegue até a pasta do projeto:
+    ```bash
+    cd MeuApp
+    ```
+
+7. Instale as dependências:
+    ```bash
+    npm install react-native-config react-native-snap-carousel react-native-chart-kit react-native-vector-icons tailwind-rn express express-validator express-rate-limit cors body-parser morgan helmet mysql2 redis bcrypt jsonwebtoken axios winston
+    ```
+    ou, se você preferir:
+    ```bash
+    npm install
+    ```
+
+8. Clone o repositório e navegue até a pasta do backend:
+   ```bash
+   git clone https://github.com/klausseidner/React-Native-Template.git
+   ```
+
+9. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
     ```env
     # Configurações do JWT
     JWT_SECRET=seu-segredo-jwt
@@ -146,11 +190,12 @@
     DB_PASSWORD=sua_senha
     DB_NAME=nome_do_banco
 
-7. Importe o arquivo `db.sql` para o MySQL para criar o banco de dados e as tabelas.
+10. Importe o arquivo `db.sql` para o MySQL para criar o banco de dados e as tabelas.
 
-8. Inicie o servidor:
+11. Inicie o servidor:
     ```bash
     npm start
+    ```
 
 ## 🤝 Autor
 
