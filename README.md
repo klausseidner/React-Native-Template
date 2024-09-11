@@ -203,6 +203,31 @@
     npm start
     ```
 
+### 📦 Gerar APK (Android)
+
+1. Instale o **Android Studio** e o **SDK**.
+    - **Android Studio**: [Download](https://developer.android.com/studio)
+    - **SDK**: Configure o SDK no Android Studio.
+2. Execute o comando:
+    ```bash
+    npx react-native run-android
+    ```
+3. Para gerar o APK, execute o comando:
+    ```bash
+    cd android
+    ./gradlew assembleRelease
+    ```
+4. O APK gerado estará na pasta `android/app/build/outputs/apk/release/app-release.apk`.
+
+### 📦 Gerar IPA (IOS)
+
+1. Instale o **Xcode**.
+2. Execute o comando:
+    ```bash
+    npx react-native run-ios
+    ```
+3. Para gerar o arquivo `.ipa`, abra o projeto no Xcode e siga as instruções.
+
 ## 🤝 Autor
 
 - [@klausseidner](https://www.github.com/klausseidner) (Klaus Seidner)
