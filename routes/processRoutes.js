@@ -12,7 +12,9 @@ const router = express.Router(); // Cria um objeto de roteamento
 const redisClient = require('../config/redis'); // Importa o cliente do Redis
 const logger = require('../utils/logger'); // Importa o módulo de log
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
 // Middleware para verificar cache
+////////////////////////////////////////////////////////////////////////////////////////////////////
 const checkCache = async (req, res, next) => {
     const processId = req.params.id; // Obtém o ID do processo
     try { // Tenta obter o processo do cache
