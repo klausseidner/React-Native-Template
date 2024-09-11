@@ -203,7 +203,7 @@
     npm start
     ```
 
-### 📦 Gerar APK (Android)
+### 📱👾 Gerar APK (Android)
 
 1. Instale o **Android Studio** e o **SDK**.
     - **Android Studio**: [Download](https://developer.android.com/studio)
@@ -219,7 +219,7 @@
     ```
 4. O APK gerado estará na pasta `android/app/build/outputs/apk/release/app-release.apk`.
 
-### 📦 Gerar IPA (IOS)
+### 📱🍏 Gerar IPA (IOS)
 
 1. Instale o **Xcode**.
 2. Execute o comando:
