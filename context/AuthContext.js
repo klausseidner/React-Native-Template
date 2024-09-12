@@ -1,19 +1,33 @@
-// AuthContext.js
-import React, { createContext, useState, useContext } from 'react';
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Arquivo de contexto de autenticação
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const AuthContext = createContext();
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Importações
+////////////////////////////////////////////////////////////////////////////////////////////////////
+import React, { createContext, useState, useContext } from 'react'; // Importa o módulo react, createContext e useState para gerenciar estados
 
-export const useAuth = () => useContext(AuthContext);
+const AuthContext = createContext(); // Cria um contexto de autenticação
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Hooks de autenticação
+////////////////////////////////////////////////////////////////////////////////////////////////////
+export const useAuth = () => useContext(AuthContext); // Cria um hook de autenticação
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Provedor de autenticação
+////////////////////////////////////////////////////////////////////////////////////////////////////
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado para gerenciar a autenticação
 
-  const login = () => setIsAuthenticated(true);
-  const logout = () => setIsAuthenticated(false);
+  const login = () => setIsAuthenticated(true); // Função para autenticar o usuário
+  const logout = () => setIsAuthenticated(false); // Função para desautenticar o usuário
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}> {/* Provedor de autenticação */}
+      {children} {/* Renderiza os componentes filhos */}
+    </AuthContext.Provider> // Finaliza o provedor de autenticação
   );
 };
+
+////////////////////////////////////////////////////////////////////////////////////////////////////

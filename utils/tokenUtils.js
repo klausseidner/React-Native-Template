@@ -12,8 +12,8 @@ import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
 // Função para gerar um token JWT
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 function generateToken(user) {
-  return jwt.sign(
-    { id: user.id, role: user.role }, 
+  return jwt.sign( // Retorna um token JWT
+    { id: user.id, role: user.role }, // Define o payload do token
     env.JWT_SECRET, // Certifique-se de que JWT_SECRET está definido no seu arquivo .env
     {
       expiresIn: env.JWT_EXPIRATION || '3600', // Certifique-se de que JWT_EXPIRATION está definido
