@@ -162,39 +162,59 @@
     cd MeuApp
     ```
 
-7. Instale as dependências:
-    ```bash
-    npm install react-native-config react-native-snap-carousel react-native-chart-kit react-native-vector-icons tailwind-rn express express-validator express-rate-limit cors body-parser morgan helmet mysql2 redis bcrypt jsonwebtoken axios winston
-    ```
-    ou, se você preferir:
-    ```bash
-    npm install
-    ```
-
-8. Clone o repositório e navegue até a pasta do backend:
+7. Clone o repositório e navegue até a pasta do backend:
    ```bash
    git clone https://github.com/klausseidner/React-Native-Template.git
    ```
 
+8. Instale as dependências:
+    ```bash
+    npm install
+    ```
+
 9. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
     ```env
-    # Configurações do JWT
-    JWT_SECRET=seu-segredo-jwt
-    JWT_EXPIRATION=1h
+    ### Configurações do JWT
+    # Deve ser um segredo forte e aleatório
+    JWT_SECRET=seu-segredo-jwt 
+    # Tempo de expiração do token em segundos (3.600 = 1 hora)
+    JWT_EXPIRATION=3600 
 
-    # Configurações do servidor
-    PORT=5000
-    CLIENT_URL=https://seu-dominio.com
-    
-    # Configurações do Redis
-    REDIS_HOST=localhost
-    REDIS_PORT=6379
+    ### Configurações do servidor
+    # Porta do servidor
+    PORT=3000 
+    # URL do cliente (front-end)
+    CLIENT_URL=https://localhost 
 
-    # Configurações do MySQL
-    DB_HOST=localhost
-    DB_USER=root
-    DB_PASSWORD=sua_senha
-    DB_NAME=nome_do_banco
+    ### Configurações do MySQL
+    # Host do banco
+    DB_HOST=localhost 
+    # Usuário do banco
+    DB_USER=root 
+    # Senha do banco
+    DB_PASSWORD=sua_senha 
+    # Nome do banco
+    DB_NAME=nome_do_banco 
+
+    ### Configurações do Redis
+    # Host do Redis
+    REDIS_HOST=localhost 
+    # Porta do Redis
+    REDIS_PORT=6379 
+
+    ### Configurações de Log (Winston)
+    # Nível de log
+    LOG_LEVEL=info 
+    # Ambiente de execução
+    NODE_ENV=development 
+    # Host do servidor de log
+    LOG_HOST=localhost 
+    # Caminho para salvar os logs
+    LOG_PATH=./logs 
+
+    ### Segurança
+    # Intervalo de requisições (5.000 = 5 segundos)
+    REFRESH_INTERVAL=5000 
 
 10. Importe o arquivo `db.sql` para o MySQL para criar o banco de dados e as tabelas.
 
