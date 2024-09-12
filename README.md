@@ -117,6 +117,7 @@
     ```bash
     curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
     sudo apt-get install -y nodejs
+    sudo apt-get install -y npm
     ```
     Instalar o **Node.js** e o **NPM** (**🟦 Windows**):
     - Acesse o site oficial do [Node.js](https://nodejs.org/en/download/prebuilt-installer) e baixe o instalador.
