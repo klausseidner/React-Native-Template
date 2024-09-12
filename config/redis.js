@@ -5,16 +5,16 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const redis = require('redis'); // Importa o módulo redis
-const env = require('react-native-config'); // Importa o módulo react-native-config
-const logger = require('./utils/logger'); // Importa o módulo logger
+import redis from 'redis'; // Importa o módulo redis
+import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
+import logger from '../utils/logger.js'; // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria um cliente do Redis
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const client = redis.createClient({
-  host: env.REDIS_HOST || 'localhost', // Endereço do servidor Redis
-  port: env.REDIS_PORT || 6379, // Porta do servidor Redis
+  host: process.env.REDIS_HOST || 'localhost', // Endereço do servidor Redis
+  port: process.env.REDIS_PORT || 6379, // Porta do servidor Redis
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,6 +31,6 @@ client.connect().then(() => {
   logger.info('Conectado ao servidor Redis'); // Exibe a mensagem de conexão bem-sucedida
 });
 
-module.exports = client; // Exporta o cliente do Redis
+export default client; // Exporta o cliente do Redis
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -5,13 +5,13 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const bcrypt = require('bcrypt'); // Importa o módulo bcrypt
-const jwt = require('jsonwebtoken'); // Importa o módulo jsonwebtoken
-const { validationResult } = require('express-validator'); // Importa a função de validação de entrada
-const env = require('react-native-config'); // Importa o módulo react-native-config
-const UserModel = require('../models/UserModel'); // Importa o modelo de usuário
-const { generateToken } = require('../utils/tokenUtils'); // Importa a função de geração de token
-const logger = require('./utils/logger'); // Importa o módulo logger
+import bcrypt from 'bcrypt'; // Importa o módulo bcrypt
+import jwt from 'jsonwebtoken'; // Importa o módulo jsonwebtoken
+import { validationResult } from 'express-validator'; // Importa a função de validação de entrada
+import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
+import UserModel from '../models/UserModel.js'; // Importa o modelo de usuário
+import generateToken from '../utils/tokenUtils.js'; // Importa a função de geração de token
+import logger from '../utils/logger.js'; // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Função de registro de usuário
@@ -113,6 +113,6 @@ const AuthController = {
   }
 };
 
-module.exports = AuthController; // Exporta o controlador de autenticação
+export default AuthController; // Exporta o controlador de autenticação
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

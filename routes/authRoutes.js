@@ -5,9 +5,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const express = require('express'); // Importa o módulo express
-const { check } = require('express-validator'); // Importa a função de validação de entrada
-const AuthController = require('../controllers/AuthController'); // Importa o controlador de autenticação
+import express from 'express'; // Importa o módulo express
+import { check } from 'express-validator'; // Importa a função de validação de entrada
+import AuthController from '../controllers/AuthController.js'; // Importa o controlador de autenticação
 
 const router = express.Router(); // Cria um roteador
 
@@ -33,6 +33,6 @@ router.post( // Rota de login de usuário
   AuthController.login // Controlador de login de usuário
 );
 
-module.exports = router; // Exporta o roteador
+export default router; // Exporta o roteador
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

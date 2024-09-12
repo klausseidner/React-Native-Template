@@ -5,8 +5,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const winston = require('winston'); // Importa o módulo winston
-const env = require('react-native-config'); // Importa o módulo react-native-config
+import winston from 'winston'; // Importa o módulo winston
+import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Formato de logs detalhados para ambiente de desenvolvimento
@@ -23,7 +23,7 @@ const developmentFormat = winston.format.combine(
 // Configuração do logger
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const logger = winston.createLogger({
-  level: env.LOG_LEVEL || 'info', // Define o nível de log
+  level: process.env.LOG_LEVEL || 'info', // Nível de log padrão
   format: winston.format.combine( // Formato de log
     winston.format.timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }), // Adiciona timestamp para logs
     winston.format.json() // Formato JSON para estruturação de logs
@@ -39,14 +39,14 @@ const logger = winston.createLogger({
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // Se estiver no ambiente de desenvolvimento
-if (env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'development') {
   logger.add(new winston.transports.Console({ // Adiciona transporte de console
     format: developmentFormat, // Usa o formato detalhado para desenvolvimento
   }));
 }
 
 // Se estiver no ambiente de produção
-if (env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   // Adiciona transporte de console em formato simples, apenas para logs essenciais
   logger.add(new winston.transports.Console({ 
     format: winston.format.simple(), // Usa o formato simples para produção
@@ -54,12 +54,12 @@ if (env.NODE_ENV === 'production') {
 
   // Exemplo de configuração adicional para produção, como envio de logs para servidor externo
   logger.add(new winston.transports.Http({
-    host: env.LOG_HOST || 'localhost', // Host do servidor de logs
-    path: env.LOG_PATH || '../logs', // Caminho para envio de logs
+    host: process.env.LOG_HOST || 'localhost', // Host do servidor de logs
+    path: process.env.LOG_PATH || '../logs', // Caminho para envio de logs
     ssl: true // Usa SSL para conexão segura
   }));
 }
 
-module.exports = logger; // Exporta o logger
+export default logger; // Exporta o logger como o padrão
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

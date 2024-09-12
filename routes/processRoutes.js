@@ -5,12 +5,12 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const express = require('express'); // Importa o módulo express
-const ProcessController = require('../controllers/ProcessController'); // Importa o controlador de processos
-const authenticateUser = require('../middleware/authMiddleware'); // Importa o middleware de autenticação
+import express from 'express'; // Importa o módulo express
+import ProcessController from '../controllers/ProcessController.js'; // Importa o controlador de processos
+import authenticateUser from '../middleware/authMiddleware.js'; // Importa o middleware de autenticação
 const router = express.Router(); // Cria um objeto de roteamento
-const redisClient = require('../config/redis'); // Importa o cliente do Redis
-const logger = require('../utils/logger'); // Importa o módulo de log
+import redisClient from '../config/redis.js'; // Importa o cliente do Redis
+import logger from '../utils/logger.js'; // Importa o módulo de log
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Middleware para verificar cache
@@ -35,10 +35,10 @@ const checkCache = async (req, res, next) => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Rota para obter um processo por ID
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-router.get('/:id', checkCache, processController.getProcess); // Rota para obter um processo por ID
+router.get('/:id', checkCache, ProcessController.getProcess); // Rota para obter um processo por ID
 // Rota para criar ou atualizar um processo (salva no cache após criação/atualização)
 router.post('/', async (req, res) => {
-  const process = await processController.createProcess(req.body); // Cria um novo processo
+  const process = await ProcessController.createProcess(req.body); // Cria um novo processo
 
   // Armazena a resposta no cache Redis
   redisClient.set(`process:${process.id}`, JSON.stringify(process), {
@@ -51,6 +51,6 @@ router.post('/process', authenticateUser, ProcessController.create); // Rota par
 router.get('/admin/processes', authenticateUser, ProcessController.listAll); // Rota para listagem de processos
 router.put('/process/:id/status', authenticateUser, ProcessController.updateStatus); // Rota para atualização de status
 
-module.exports = router; // Exporta o objeto de roteamento
+export default router; // Exporta o objeto de roteamento
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

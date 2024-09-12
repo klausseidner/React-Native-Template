@@ -7,8 +7,8 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import axios from 'axios'; // Importa o módulo axios para requisições HTTP
 import * as SecureStore from 'expo-secure-store'; // Importa o módulo SecureStore para armazenamento seguro
-const env = require('react-native-config'); // Importa o módulo react-native-config
-const logger = require('./utils/logger'); // Importa o módulo logger
+import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
+import logger from 'logger.js'; // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma instância do axios para realizar requisições à API

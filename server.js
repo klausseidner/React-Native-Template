@@ -5,24 +5,23 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const express = require('express'); // Importa o módulo express
-const cors = require('cors'); // Importa o módulo cors
-const bodyParser = require('body-parser'); // Importa o módulo body-parser
-const env = require('react-native-config'); // Importa o módulo react-native-config
-const rateLimit = require('express-rate-limit'); // Importa o módulo express-rate-limit
-const morgan = require('morgan'); // Adiciona Morgan para logs de requisições
-const authRoutes = require('./routes/authRoutes'); // Importa as rotas de autenticação
-const processRoutes = require('./routes/processRoutes'); // Importa as rotas de processos
-const helmet = require('helmet'); // Importa o módulo helmet
-const logger = require('./utils/logger'); // Importa o módulo logger
+import express from 'express'; // Importa o módulo express
+import cors from 'cors'; // Importa o módulo cors
+import bodyParser from 'body-parser'; // Importa o módulo body-parser
+import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
+import rateLimit from 'express-rate-limit'; // Importa o módulo express-rate-limit
+import morgan from 'morgan'; // Adiciona Morgan para logs de requisições
+import authRoutes from './routes/authRoutes.js'; // Importa as rotas de autenticação
+import processRoutes from './routes/processRoutes.js'; // Importa as rotas de processos
+import helmet from 'helmet'; // Importa o módulo helmet
+import logger from './utils/logger.js'; // Importa o módulo logger
 
-app.use(helmet()); // Adiciona o middleware helmet
 const app = express(); // Cria uma instância do express
-const PORT = env.PORT || 3000; // Porta do servidor
+const PORT = process.env.PORT || 3000; // Porta do servidor
 
 // Configuração de CORS e Morgan para logs
 const corsOptions = {
-  origin: env.CLIENT_URL || 'http://localhost:19006', // URL do cliente
+  origin: process.env.CLIENT_URL || 'http://localhost:19006', // URL do cliente
   optionsSuccessStatus: 200, // Código de status de sucesso
 };
 app.use(cors(corsOptions)); // Habilita o CORS
@@ -37,6 +36,8 @@ const limiter = rateLimit({
   message: "Muitas requisições feitas pelo mesmo IP, tente novamente mais tarde.", // Mensagem de erro
 });
 app.use('/api/auth/login', limiter); // Aplica o rate limiting nas requisições de login
+
+app.use(helmet()); // Adiciona o middleware helmet
 
 app.use('/api/auth', authRoutes); // Rotas de autenticação
 app.use('/api/process', processRoutes); // Rotas de processos

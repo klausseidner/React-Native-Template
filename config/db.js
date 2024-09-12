@@ -5,18 +5,18 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const mysql = require('mysql2'); // Importa o módulo mysql2
-const env = require('react-native-config'); // Importa o módulo react-native-config
-const logger = require('./utils/logger'); // Importa o módulo logger
+import mysql from 'mysql2'; // Importa o módulo mysql2
+import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
+import logger from '../utils/logger.js'; // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Cria uma conexão com o banco de dados MySQL
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const connection = mysql.createConnection({
-  host: env.DB_HOST || 'localhost', // Endereço do banco de dados
-  user: env.DB_USER || 'root', // Usuário do banco de dados
-  password: env.DB_PASSWORD || '', // Senha do banco de dados
-  database: env.DB_NAME || 'database', // Nome do banco de dados
+  host: process.env.DB_HOST || 'localhost', // Endereço do banco de dados
+  user: process.env.DB_USER || 'root', // Usuário do banco de dados
+  password: process.env.DB_PASSWORD || '', // Senha do banco de dados
+  database: process.env.DB_NAME || 'database', // Nome do banco de dados
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,6 +27,6 @@ connection.connect((err) => { // Callback de conexão
   logger.error(`Erro ao conectar ao banco de dados: ${err.message}`, { stack: err.stack }); // Exibe o erro
 });
 
-module.exports = connection; // Exporta a conexão com o banco de dados
+export default connection; // Exporta a conexão com o banco de dados
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
