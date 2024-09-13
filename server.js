@@ -6,49 +6,94 @@
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 import express from 'express'; // Importa o módulo express
-import cors from 'cors'; // Importa o módulo cors
 import bodyParser from 'body-parser'; // Importa o módulo body-parser
 import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
-import rateLimit from 'express-rate-limit'; // Importa o módulo express-rate-limit
 import morgan from 'morgan'; // Adiciona Morgan para logs de requisições
 import authRoutes from './routes/authRoutes.js'; // Importa as rotas de autenticação
 import processRoutes from './routes/processRoutes.js'; // Importa as rotas de processos
-import helmet from 'helmet'; // Importa o módulo helmet
 import logger from './utils/logger.js'; // Importa o módulo logger
+import session from 'express-session'; // Importa o módulo express-session
+import helmet from 'helmet'; // Importa o módulo helmet
+import limiter from './middleware/rateLimit.js'; // Importa o middleware de rate limiting
+import cors from './middleware/cors.js'; // Importa o middleware de CORS
 
 const app = express(); // Cria uma instância do express
 const PORT = process.env.PORT || 3000; // Porta do servidor
 
-// Configuração de CORS e Morgan para logs
-const corsOptions = {
-  origin: process.env.CLIENT_URL || 'http://localhost:19006', // URL do cliente
-  optionsSuccessStatus: 200, // Código de status de sucesso
-};
-app.use(cors(corsOptions)); // Habilita o CORS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Configuração do express-session
+////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use(session({
+  secret: process.env.JWT_SECRET || 'your-secret-key', // Chave secreta para assinar a sessão
+  resave: false, // Evita salvar a sessão se não houver modificações
+  saveUninitialized: false, // Evita salvar sessões não inicializadas
+  cookie: { secure: false }, // Defina como true se estiver usando HTTPS
+}));
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Middlewares
+////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use(cors); // Adiciona o middleware de CORS
 app.use(morgan('dev')); // Log das requisições
-
 app.use(bodyParser.json()); // Habilita o body-parser
-
-// Middleware de rate limiting
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutos
-  max: 100, // Limite de 100 requisições
-  message: "Muitas requisições feitas pelo mesmo IP, tente novamente mais tarde.", // Mensagem de erro
-});
-app.use('/api/auth/login', limiter); // Aplica o rate limiting nas requisições de login
-
+app.use('/api/login', limiter); // Aplica o rate limiting nas requisições de login
 app.use(helmet()); // Adiciona o middleware helmet
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Middleware para verificar sessão inicializada
+////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use((req, res, next) => {
+  if (!req.session) {
+    return next(new Error('Sessão não inicializada')); // Retorna erro se a sessão não for inicializada
+  }
+  next();
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Redirecionamento baseado na sessão do usuário
+////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use((req, res, next) => {
+  // Se estiver na página de login, não redirecionar
+  if (req.path === '/login' || req.path.startsWith('/api/auth')) {
+    return next();
+  }
+  
+  // Se não estiver logado, redirecionar para a página de login
+  if (!req.session || !req.session.userId) {
+    return res.redirect('/api/auth/login');
+  }
+
+  // Se estiver logado e for admin, redirecionar para o dashboard admin
+  if (req.session.userId && req.session.isAdmin) {
+    return res.redirect('/admin/dashboard');
+  }
+
+  // Se estiver logado como usuário comum, redirecionar para a lista de processos
+  if (req.session.userId && !req.session.isAdmin) {
+    return res.redirect('/processes');
+  }
+  next();
+});
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Rotas de autenticação e processos
+////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use('/api/auth', authRoutes); // Rotas de autenticação
 app.use('/api/process', processRoutes); // Rotas de processos
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Middleware para tratar erros
+////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use((err, req, res, next) => {
-  logger.error(`Erro capturado: ${err.message}`, {stack: err.stack}); // Registra o erro no arquivo de log
+  logger.error(`server.js-> Erro capturado: ${err.message}`, { stack: err.stack }); // Registra o erro no arquivo de log
   res.status(500).json({ message: 'Erro interno no servidor' }); // Retorna uma mensagem de erro
 });
 
-app.listen(PORT, () => { // Inicia o servidor
-  logger.info(`Servidor rodando na porta ${PORT}`); // Registra a mensagem de servidor rodando
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Inicialização do servidor
+////////////////////////////////////////////////////////////////////////////////////////////////////
+app.listen(PORT, () => {
+  logger.info(`server.js-> Servidor rodando na porta ${PORT}`); // Registra a mensagem de servidor rodando
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

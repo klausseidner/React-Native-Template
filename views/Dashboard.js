@@ -38,13 +38,13 @@ export default function Dashboard() {
         try { // Tenta buscar os processos
             const response = await api.get('/user/processes'); // Busca os processos
             setProcesses(response.data); // Atualiza o estado de processos
-            logger.info('Processos carregados com sucesso'); // Exibe a mensagem de sucesso no console
+            logger.info('Dashboard.js-> Processos carregados com sucesso'); // Exibe a mensagem de sucesso no console
         } catch (error) { // Se houver erro
             setError('Erro ao buscar os processos'); // Atualiza o estado de erro
-            logger.error(`Erro ao buscar processos: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
+            logger.error(`Dashboard.js-> Erro ao buscar processos: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
         } finally { // Finalmente
             setLoading(false); // Atualiza o estado de carregamento
-            logger.info('Fim da busca de processos'); // Exibe a mensagem de sucesso no console
+            logger.info('Dashboard.js-> Fim da busca de processos'); // Exibe a mensagem de sucesso no console
         }
     };
 

@@ -14,8 +14,10 @@ import logger from 'logger.js'; // Importa o módulo logger
 // Cria uma instância do axios para realizar requisições à API
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 const api = axios.create({
-  baseURL: env.CLIENT_API_URL + ':' + env.CLIENT_API_PORT || 'http://localhost:3000', // URL da API
+  baseURL: env.CLIENT_API_URL + ':' + env.CLIENT_API_PORT || 'http://localhost:3000/api', // URL da API
 });
+// Mostra a mensagem de conexão
+logger.info(`api.js-> Conectado à API em ${env.CLIENT_API_URL}:${env.CLIENT_API_PORT}`); // Loga a mensagem de conexão
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Intercepta as requisições para adicionar o token de autenticação
@@ -58,7 +60,7 @@ export const saveToken = async (token) => {
   try { // Tenta salvar o token
     await SecureStore.setItemAsync('token', token); // Salva o token
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao salvar o token: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao salvar o token: ${error.message}`, { stack: error.stack }); // Exibe o erro
   }
 };
 
@@ -69,7 +71,7 @@ export const removeToken = async () => {
   try { // Tenta remover o token
     await SecureStore.deleteItemAsync('token'); // Remove o token
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao remover o token: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao remover o token: ${error.message}`, { stack: error.stack }); // Exibe o erro
   }
 };
 
@@ -80,7 +82,7 @@ export const getToken = async () => {
   try { // Tenta obter o token
     return await SecureStore.getItemAsync('token'); // Retorna o token
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao obter o token: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao obter o token: ${error.message}`, { stack: error.stack }); // Exibe o erro
   }
 };
 
@@ -96,7 +98,7 @@ export const registerUser = async (userData) => {
     const response = await api.post('/auth/register', userData); // Registra o usuário
     return response.data; // Retorna os dados
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao registrar usuário: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao registrar usuário: ${error.message}`, { stack: error.stack }); // Exibe o erro
     throw error; // Lança o erro
   }
 };
@@ -109,7 +111,7 @@ export const loginUser = async (credentials) => {
     const response = await api.post('/auth/login', credentials); // Faz login
     return response.data; // Retorna os dados
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao fazer login: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao fazer login: ${error.message}`, { stack: error.stack }); // Exibe o erro
     throw error; // Lança o erro
   }
 };
@@ -122,7 +124,7 @@ export const createProcess = async (processData) => {
     const response = await api.post('/processes', processData); // Cria o processo
     return response.data; // Retorna os dados
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao criar processo: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao criar processo: ${error.message}`, { stack: error.stack }); // Exibe o erro
     throw error; // Lança o erro
   }
 };
@@ -135,7 +137,7 @@ export const listUserProcesses = async () => {
     const response = await api.get('/processes/user'); // Lista os processos do usuário
     return response.data; // Retorna os dados
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao listar processos do usuário: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao listar processos do usuário: ${error.message}`, { stack: error.stack }); // Exibe o erro
     throw error; // Lança o erro
   }
 };
@@ -148,7 +150,7 @@ export const listAllProcesses = async () => {
     const response = await api.get('/processes'); // Lista todos os processos
     return response.data; // Retorna os dados
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao listar processos: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao listar processos: ${error.message}`, { stack: error.stack }); // Exibe o erro
     throw error; // Lança o erro
   }
 };
@@ -161,7 +163,7 @@ export const updateProcessStatus = async (processId, status) => {
     const response = await api.put(`/processes/${processId}/status`, { status }); // Atualiza o status do processo
     return response.data; // Retorna os dados
   } catch (error) { // Se houver um erro, exibe o erro
-    logger.error(`Erro ao atualizar o status do processo: ${error.message}`, { stack: error.stack }); // Exibe o erro
+    logger.error(`api.js-> Erro ao atualizar o status do processo: ${error.message}`, { stack: error.stack }); // Exibe o erro
     throw error; // Lança o erro
   }
 };

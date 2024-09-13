@@ -104,6 +104,7 @@
 - **Node.js** (versão 14 ou superior)
 - **MySQL** em execução localmente ou serviço em nuvem (ex: AWS RDS, Azure, Google Cloud SQL e etc.)
 - **Git** para clonar o repositório
+- **Redis** em execução localmente ou serviço em nuvem (ex: AWS ElastiCache, Azure Cache for Redis, Google Cloud Memorystore e etc.)
 
 ### 📦 Configurações
 
@@ -149,32 +150,44 @@
     - Acesse o site oficial do [Git](https://git-scm.com/downloads) e baixe o instalador.
     - Execute o instalador e siga as instruções.
 
-4. Instalar o **React Native CLI**:
+4. Instalar o **Redis** (**🐧 Ubuntu**):
+    ```bash
+    sudo apt update
+    sudo apt install redis-server
+    ```
+    Instalar o **Redis** (**🟦 Windows**):
+    ```bash
+    wsl --install
+    sudo apt update
+    sudo apt install redis-server
+    ```
+
+5. Instalar o **React Native CLI**:
     ```bash
     npm install -g react-native-cli
     ```
 
-5. Criação de um novo projeto:
+6. Criação de um novo projeto:
     ```bash
     npx react-native init MeuApp
     ```
 
-6. Navegue até a pasta do projeto:
+7. Navegue até a pasta do projeto:
     ```bash
     cd MeuApp
     ```
 
-7. Clone o repositório e navegue até a pasta do backend:
+8. Clone o repositório e navegue até a pasta do backend:
    ```bash
    git clone https://github.com/klausseidner/React-Native-Template.git
    ```
 
-8. Instale as dependências:
+9. Instale as dependências:
     ```bash
     npm install
     ```
 
-9. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
+10. Crie um arquivo `.env` na raiz do projeto e adicione as seguintes variáveis de ambiente:
     ```env
     ### Configurações do JWT
     # Deve ser um segredo forte e aleatório
@@ -218,12 +231,29 @@
     # Intervalo de requisições (5.000 = 5 segundos)
     REFRESH_INTERVAL=5000 
 
-10. Importe o arquivo `db.sql` para o MySQL para criar o banco de dados e as tabelas.
+11. Importe o arquivo `db.sql` para o MySQL para criar o banco de dados e as tabelas.
 
-11. Inicie o servidor:
+12. Inicie o Redis (🐧 Ubuntu):
+    ```bash
+    redis-server
+    ```
+    Inicie o Redis no WSL (🟦 Windows):
+    ```bash
+    sudo service redis-server start
+    ```
+
+13. Inicie o servidor:
     ```bash
     npm start
     ```
+
+**Se você recebeu as seguintes mensagens, você comcluiu a instalação com sucesso:**
+```bash
+    > node server.js
+    2024-09-13 03:17:01 [info]: server.js-> Servidor rodando na porta 3000
+    2024-09-13 03:17:01 [info]: redis.js-> Conectado ao servidor Redis
+    2024-09-13 03:17:01 [info]: Conexão com o banco de dados estabelecida com sucesso.
+```
 
 ### 📱👾 Gerar APK (Android)
 

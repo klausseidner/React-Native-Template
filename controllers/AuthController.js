@@ -43,8 +43,8 @@ const AuthController = {
       return res.json({ token, user: { id: newUser.id, email: newUser.email, name: newUser.name } }); // Retorna o token e os dados do usuário
 
     } catch (error) { // Se houver um erro, exibe o erro
-      logger.error(`Erro ao registrar usuário: ${error.message}`, { stack: error.stack }); // Exibe o erro
-      return res.status(500).json({ message: 'Erro ao registrar usuário' }); // Retorna uma mensagem de erro
+      logger.error(`AuthController.js-> Erro ao registrar usuário: ${error.message}`, { stack: error.stack }); // Exibe o erro
+      return res.status(500).json({ message: 'AuthController.js-> Erro ao registrar usuário' }); // Retorna uma mensagem de erro
     }
   },
 
@@ -76,7 +76,7 @@ const AuthController = {
       return res.json({ token, user: { id: user.id, email: user.email, name: user.name } }); // Retorna o token e os dados do usuário
 
     } catch (error) { // Se houver um erro, exibe o erro
-      logger.error(`Erro ao fazer login: ${error.message}`, { stack: error.stack }); // Exibe o erro
+      logger.error(`AuthController.js->  Erro ao fazer login: ${error.message}`, { stack: error.stack }); // Exibe o erro
       return res.status(500).json({ message: 'Erro ao fazer login' }); // Retorna uma mensagem de erro
     }
   },

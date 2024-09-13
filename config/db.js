@@ -28,11 +28,11 @@ const pool = mysql.createPool({
 const testConnection = async () => {
   try { // Tenta conectar ao banco de dados
     const connection = await pool.getConnection(); // Obtém uma conexão do pool
-    logger.info('Conexão com o banco de dados estabelecida com sucesso.'); // Loga a mensagem de sucesso
+    logger.info('db.js-> Conexão com o banco de dados estabelecida com sucesso.'); // Loga a mensagem de sucesso
     connection.release(); // Libera a conexão de volta ao pool
   } catch (err) {
     // Se houver erro, loga o erro e encerra a aplicação
-    logger.error(`Erro ao conectar ao banco de dados: ${err.message}`, { stack: err.stack }); // Loga o erro
+    logger.error(`db.js-> Erro ao conectar ao banco de dados: ${err.message}`, { stack: err.stack }); // Loga o erro
     process.exit(1); // Encerra a aplicação com status 1 (erro)
   }
 };

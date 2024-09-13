@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Middleware de CORS
+////////////////////////////////////////////////////////////////////////////////////////////////////
+import cors from 'cors'; // Importa o módulo cors
+
+const corsOptions = {
+  origin: process.env.CLIENT_URL || 'http://localhost:19006', // URL do cliente
+  optionsSuccessStatus: 200, // Código de status de sucesso
+};
+
+export default cors(corsOptions); // Exporta o middleware de cors

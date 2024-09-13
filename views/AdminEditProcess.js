@@ -60,11 +60,11 @@ export default function AdminEditProcess({ route, navigation }) { // Exporta a f
     try { // Tenta atualizar o processo
       await api.put(`/process/${processId}`, { title, description, status }); // Atualiza o processo
       Alert.alert('Sucesso', 'Processo atualizado com sucesso'); // Mensagem de sucesso
-      logger.info('Processo atualizado com sucesso'); // Exibe a mensagem de sucesso no console
+      logger.info('AdminEditProcess.js-> Processo atualizado com sucesso'); // Exibe a mensagem de sucesso no console
       navigation.goBack(); // Retorna à tela anterior
     } catch (error) { // Se houver erro
       Alert.alert('Erro', 'Erro ao atualizar o processo'); // Mensagem de erro
-      logger.error(`Erro ao atualizar processo: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
+      logger.error(`AdminEditProcess.js-> Erro ao atualizar processo: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     }
   };
 

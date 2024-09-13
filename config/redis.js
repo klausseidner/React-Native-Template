@@ -5,30 +5,29 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Importações
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-import redis from 'redis'; // Importa o módulo redis
-import 'dotenv/config'; // Carrega variáveis de ambiente do arquivo .env
+import { createClient } from 'redis'; // Importa o método correto do redis
+import 'dotenv/config'; // Importa as variáveis de ambiente
 import logger from '../utils/logger.js'; // Importa o módulo logger
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Cria um cliente do Redis
+// Cria o cliente do Redis
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-const client = redis.createClient({
-  host: process.env.REDIS_HOST || 'localhost', // Endereço do servidor Redis
-  port: process.env.REDIS_PORT || 6379, // Porta do servidor Redis
+const client = createClient({
+  url: `redis://${process.env.REDIS_HOST || '127.0.0.1'}:${process.env.REDIS_PORT || 6379}` // URL do servidor Redis
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-// Evento de erro de conexão com o Redis
+// Evento de erro
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 client.on('error', (err) => {
-  logger.error(`Erro na conexão com o Redis: ${err.message}`, { stack: err.stack }); // Exibe o erro no console
+  logger.error(`redis.js-> Erro na conexão com o Redis: ${err.message}`, { stack: err.stack }); // Loga o erro
 });
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Conectar ao Redis
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 client.connect().then(() => {
-  logger.info('Conectado ao servidor Redis'); // Exibe a mensagem de conexão bem-sucedida
+  logger.info('redis.js-> Conectado ao servidor Redis'); // Loga a mensagem de sucesso
 });
 
 export default client; // Exporta o cliente do Redis

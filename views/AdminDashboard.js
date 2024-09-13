@@ -40,13 +40,13 @@ export default function AdminDashboard() {
     try { // Tenta buscar os processos
       const response = await api.get('/admin/processes'); // Busca os processos
       setProcesses(response.data); // Atualiza o estado de processos com os dados obtidos
-      logger.info('Processos carregados com sucesso'); // Registra a ação no log
+      logger.info('AdminDashboard.js-> Processos carregados com sucesso'); // Registra a ação no log
     } catch (error) { // Em caso de erro
       setError('Erro ao buscar os processos'); // Atualiza o estado de erro
-      logger.error(`Erro ao buscar processos: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
+      logger.error(`AdminDashboard.js-> Erro ao buscar processos: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally { // Após buscar os processos
       setLoading(false); // Desativa o indicador de carregamento
-      logger.info('Fim da busca de processos'); // Registra a ação no log
+      logger.info('AdminDashboard.js-> Fim da busca de processos'); // Registra a ação no log
     }
   };
 
@@ -59,10 +59,10 @@ export default function AdminDashboard() {
       await api.put(`/process/${processId}/status`, { status: newStatus }); // Atualiza o status  
       fetchProcesses(); // Atualiza os processos após a mudança
       Alert.alert('Sucesso', 'Status atualizado com sucesso'); // Mensagem de sucesso
-      logger.info('Status atualizado com sucesso'); // Registra a ação no log
+      logger.info('AdminDashboard.js-> Status atualizado com sucesso'); // Registra a ação no log
     } catch (error) { // Em caso de erro
       Alert.alert('Erro', 'Erro ao atualizar o status'); // Mensagem de erro
-      logger.error(`Erro ao atualizar status: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
+      logger.error(`AdminDashboard.js-> Erro ao atualizar status: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally { // Finaliza
       setUpdatingProcessId(null); // Desativa o indicador de atualização
     }

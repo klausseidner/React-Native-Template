@@ -42,7 +42,7 @@ export default function App() {
       navigation.navigate(navigateTo);  // Tenta navegar para a tela solicitada
     } catch (error) {
       setError('Erro ao navegar. Tente novamente mais tarde.');  // Define o estado de erro
-      logger.error(error);  // Loga o erro no console
+      logger.error('App.js-> '.error);  // Loga o erro no console
     }
   };
 

@@ -1,26 +1,27 @@
-CREATE TABLE users ( # Tabela de usuários
-  id INT AUTO_INCREMENT PRIMARY KEY, # ID do usuário
-  name VARCHAR(100) NOT NULL, # Nome do usuário
-  email VARCHAR(100) UNIQUE NOT NULL, # E-mail do usuário
-  password VARCHAR(255) NOT NULL, # Senha do usuário
-  rg VARCHAR(12) UNIQUE NOT NULL, # RG do usuário
-  cpf VARCHAR(14) UNIQUE NOT NULL, # CPF do usuário
-  role ENUM('comum', 'administrativo') DEFAULT 'comum', # Papel do usuário
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, # xData de criação do usuário
-  INDEX (email), # Índice do e-mail
-  INDEX (rg), # Índice do RG
-  INDEX (cpf) # Índice do CPF
+CREATE TABLE users ( 
+  id INT AUTO_INCREMENT PRIMARY KEY, 
+  name VARCHAR(100) NOT NULL, 
+  email VARCHAR(100) UNIQUE NOT NULL, 
+  password VARCHAR(255) NOT NULL, 
+  rg VARCHAR(12) UNIQUE NOT NULL, 
+  cpf VARCHAR(14) UNIQUE NOT NULL, 
+  role ENUM('comum', 'administrativo') DEFAULT 'comum', 
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+  INDEX (email), 
+  INDEX (rg), 
+  INDEX (cpf)
 );
 
-CREATE TABLE processes ( # Tabela de processos
-  id INT AUTO_INCREMENT PRIMARY KEY, # ID do processo
-  user_id INT NOT NULL, # ID do usuário
-  title VARCHAR(255) NOT NULL, # Título do processo
-  description TEXT, # Descrição do processo
-  option INT CHECK(option BETWEEN 1 AND 6) DEFAULT 1,  # Valor padrão adicionado
-  status ENUM('ativo', 'em processo', 'concluído', 'repugnado') DEFAULT 'ativo', # xStatus do processo
-  version INT DEFAULT 1,  # Versão do processo 
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, # xData de criação do processo
-  FOREIGN KEY (user_id) REFERENCES users(id), # Chave estrangeira do usuário
-  INDEX (user_id) # Índice do ID do usuário
-); 
+CREATE TABLE processes (
+  id INT AUTO_INCREMENT PRIMARY KEY, 
+  user_id INT NOT NULL, 
+  title VARCHAR(255) NOT NULL, 
+  description TEXT, 
+  process_option INT DEFAULT 1,  -- Valor padrão para o campo
+  status ENUM('ativo', 'em processo', 'concluído', 'repugnado') DEFAULT 'ativo', 
+  version INT DEFAULT 1,  
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
+  FOREIGN KEY (user_id) REFERENCES users(id), 
+  INDEX (user_id),
+  CONSTRAINT chk_process_option CHECK (process_option BETWEEN 1 AND 6)  -- Correção da restrição CHECK
+);

@@ -34,14 +34,14 @@ export default function CreateProcess({ navigation }) { // Exporta a função de
     try { // Tenta criar o processo
       await api.post('/process', { title, description, option }); // Cria o processo
       Alert.alert('Sucesso', 'Processo criado com sucesso!'); // Mensagem de sucesso
-      logger.info('Processo criado com sucesso!'); // Exibe a mensagem de sucesso no console
+      logger.info('CreateProcess.js-> Processo criado com sucesso!'); // Exibe a mensagem de sucesso no console
       setTitle(''); // Limpa o campo de título
       setDescription(''); // Limpa o campo de descrição
       setOption('1'); // Reseta a opção
       navigation.navigate('UserProcesses'); // Navega para a tela de processos do usuário
     } catch (error) { // Se houver erro
       Alert.alert('Erro', 'Erro ao criar o processo.'); // Mensagem de erro
-      logger.error(`Erro ao criar processo: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
+      logger.error(`CreateProcess.js-> Erro ao criar processo: ${error.message}`, { stack: error.stack }); // Exibe o erro no console
     } finally {
       setLoading(false); // Desativa o indicador de carregamento
     }
