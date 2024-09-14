@@ -25,9 +25,10 @@ const PORT = process.env.PORT || 3000; // Porta do servidor
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use(session({
   secret: process.env.JWT_SECRET || 'your-secret-key', // Chave secreta para assinar a sessão
-  resave: false, // Evita salvar a sessão se não houver modificações
-  saveUninitialized: false, // Evita salvar sessões não inicializadas
+  resave: true, // Força a sessão a ser salva de volta ao armazenamento da sessão
+  saveUninitialized: true, // Força uma sessão não inicializada a ser salva no armazenamento
   cookie: { secure: false }, // Defina como true se estiver usando HTTPS
+  maxAge: process.env.JWT_EXPIRATION || 3600000, // Tempo de expiração da sessão
 }));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
